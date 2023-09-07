@@ -10,6 +10,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/51cad990b5.js" crossorigin="anonymous"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -31,6 +32,12 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <footer class="text-white" style="background: #453bd9">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <small>&copy; {{ date('Y') }} Klikdom. All rights reserved</small>
+                </div>
+            </footer>
         </div>
     </body>
 </html>
