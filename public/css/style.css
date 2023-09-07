@@ -1,0 +1,229 @@
+
+
+/*================TAGS================*/
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+a {
+    text-decoration: none;
+    color: #212529 !important;
+    font-weight: 600 !important;
+}
+
+p {
+    margin: 0;
+}
+
+ul {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/*================BTNs & HOVERS================*/
+
+.navHover:hover {
+    color: var(--color-primary) !important;
+}
+
+.btnContact:hover {
+    filter: brightness(70%);
+    color: var(--color-primary) !important;
+}
+
+.btnPrimary {
+    color: white !important;
+    font-weight: 600;
+    background: var(--color-primary);
+    padding: 0.6rem 1.3rem !important;
+    border-radius: 0.4rem;
+}
+.btnPrimary:hover {
+    background-image: var(--btnHoverLight);
+}
+
+.btnOutline {
+    color: var(--color-primary) !important;
+    font-weight: 600;
+    border: 2px solid var(--color-primary);
+    padding: 0.5rem 1.3rem !important;
+    border-radius: 0.4rem;
+}
+.btnOutline:hover {
+    filter: brightness(200%);
+}
+
+.btnAccent {
+    color: white !important;
+    font-weight: 600;
+    background: var(--color-accent);
+    padding: 0.6rem 1.3rem !important;
+    border-radius: 0.4rem;
+}
+.btnAccent:hover {
+    background-image: var(--btnHoverDark);
+}
+
+.btnOutlineAccent {
+    font-weight: 600;
+    border: 2px solid var(--color-accent);
+    padding: 0.5rem 1.3rem !important;
+    border-radius: 0.4rem;
+    color: var(--color-accent) !important;
+}
+.btnOutlineAccent:hover {
+    filter: brightness(80%);
+}
+
+
+/*================CLASSES================*/
+
+.container {
+    max-width: 1200px;
+    width: 82%;
+}
+
+.sectionPadding {
+    padding: 6rem 0px;
+}
+.headerMargin {
+    margin-bottom: 5rem;
+}
+
+.line {
+    height: 1px;
+    margin: 2rem 0px 2rem 0px;
+    background: #cbd5e0;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.fontSmall {
+    font-size: 0.8rem;
+}
+.fontBold {
+    font-weight: 800;
+}
+
+
+/*================VAR================*/
+:root {
+    --color-bg: #ffffff;
+    --color-primary: #453bd9;
+    --color-accent: #ff8500;
+
+    --transition: all 500ms ease;
+
+    --container-width-lg: 75%;
+    --container-width-md: 86%;
+    --container-width-sm: 90%;
+
+    --btnHoverDark: linear-gradient(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.10));
+    --btnHoverLight: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+}
+
+
+/*================COLORS================*/
+
+.colorBg {
+    background: var(--color-bg);
+}
+
+.colorPrimary {
+    background: var(--color-primary);
+}
+
+.colorAccent {
+    background: var(--color-accent);
+}
+
+
+/*================MEDIA================*/
+@media screen and  (max-width: 1350px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media screen and  (max-width: 992px) {
+    .headerMargin {
+        margin-bottom: 4rem;
+    }
+}
+
+@media screen and  (max-width: 768px) {
+    * {
+        font-size: 1rem;
+    }
+
+    .fontSmall {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .offcanvas {
+        width: 70% !important;
+    }
+}
+
+@media (max-aspect-ratio: 4/3) {
+    .navHover:hover {
+        color: inherit !important;
+    }
+    .navHover:active {
+        color: var(--color-primary) !important;
+    }
+
+    .btnPrimary:hover {
+        background-image: inherit;
+    }
+    .btnPrimary:active {
+        background-image: var(--btnHoverLight);
+    }
+
+    .btnOutline:hover {
+        filter: none;
+    }
+    .btnOutline:active {
+        filter: brightness(200%);
+    }
+
+    .btnAccent:hover {
+        background-image: inherit;
+    }
+    .btnAccent:active {
+        background-image: var(--btnHoverDark);
+    }
+
+    .btnOutlineAccent:hover {
+        filter: none;
+    }
+    .btnOutlineAccent:active {
+        filter: brightness(80%);
+    }
+}
