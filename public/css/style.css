@@ -41,6 +41,10 @@ ul {
     padding: 0 !important;
 }
 
+i {
+    font-size: 15px;
+}
+
 
 /*================BTNs & HOVERS================*/
 
@@ -107,6 +111,9 @@ ul {
 
 .sectionPadding {
     padding: 6rem 0px;
+}
+.sectionMargin {
+    margin-top: 6rem;
 }
 .headerMargin {
     margin-bottom: 5rem;

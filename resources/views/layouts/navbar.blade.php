@@ -1,5 +1,5 @@
 <header id="#">
-    <nav class="navbar navbar-expand-lg shadow-sm">
+    <nav class="navbar navbar-expand-lg bg-white py-3">
         <div class='container'>
             <a href="/" class="navbar-brand">
                 <img style="width: 180px"
@@ -9,9 +9,7 @@
             </a>
 
             <button id="openMenu" class="navbar-toggler p-0 border-0 shadow-none">
-                <i class="fa-solid fa-bars fs-2 shadow-none"
-                   style="color: var(--color-primary);">
-                </i>
+                <i class="fa-solid fa-bars fs-2 shadow-none" style="color: var(--color-primary)"></i>
             </button>
 
             <div class="offcanvas offcanvas-end"
@@ -35,7 +33,7 @@
                     <div class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <ul class="d-lg-flex gap-3 d-none">
                             <li class="nav-item">
-                                <a href="/" class="nav-link btnPrimary">
+                                <a href="{{ route('listing.type') }}" class="nav-link btnPrimary">
                                     <i class="fa-solid fa-plus me-2"></i>
                                     Postavi oglas
                                 </a>
@@ -87,7 +85,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/" class="nav-link navHover">
+                                <a href="{{ route('listing.type') }}" class="nav-link navHover">
                                     <i class="fa-solid fa-pen-to-square me-2"></i>
                                     Postavi oglas
                                 </a>
@@ -121,7 +119,7 @@
                                 <a href="https://www.facebook.com"
                                    target="/"
                                    class="nav-link navHover">
-                                    <i class="fa-brands fa-square-facebook me-2 fs-6"></i>
+                                    <i class="fa-brands fa-square-facebook me-2"></i>
                                     Facebook
                                 </a>
                             </li>
@@ -129,7 +127,7 @@
                                 <a href="https://www.instagram.com"
                                    target="/"
                                    class="nav-link navHover">
-                                    <i class="fa-brands fa-instagram me-2 fs-6"></i>
+                                    <i class="fa-brands fa-instagram me-2"></i>
                                     Instagram
                                 </a>
                             </li>

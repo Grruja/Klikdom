@@ -1,8 +1,22 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                <a href={{ \Illuminate\Support\Facades\URL::previous() }}>
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>
+                {{ __('Profile') }}
+            </h2>
+
+            <div class="shrink-0 flex items-center">
+                <a href="/" class="navbar-brand">
+                    <img style="width: 150px"
+                         src="{{asset('assets/logo.png')}}"
+                         alt="Klikdom logo"
+                    />
+                </a>
+            </div>
+        </div>
     </x-slot>
 
     <div class="py-12">
