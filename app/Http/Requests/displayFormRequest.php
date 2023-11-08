@@ -23,7 +23,7 @@ class displayFormRequest extends FormRequest
     {
         return [
             'transaction' => 'required|in:sell,rent',
-            'real_estate' => 'required|in:house,apartment',
+            'property' => 'required|in:house,apartment',
         ];
     }
 }

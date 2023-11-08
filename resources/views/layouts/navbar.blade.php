@@ -1,5 +1,5 @@
 <header id="#">
-    <nav class="navbar navbar-expand-lg bg-white py-3">
+    <nav class="navbar navbar-expand-lg shadow-sm bg-white py-3">
         <div class='container'>
             <a href="/" class="navbar-brand">
                 <img style="width: 180px"

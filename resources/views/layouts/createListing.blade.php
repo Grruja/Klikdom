@@ -17,10 +17,10 @@
 
     <body>
         @include('layouts.navbar')
-        <main>
+
+        <main style="background-image: url({{ asset('assets/white_house.jpg') }}); background-size: cover; background-position: bottom; background-repeat: no-repeat;">
             @yield('pageContent')
         </main>
-        @include('layouts.footer')
     </body>
 
     <script src="../js/script.js"></script>

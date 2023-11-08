@@ -1,26 +1,26 @@
-@extends('layouts.main')
+@extends('layouts.createListing')
 
 @section('pageContent')
     <div class="container d-flex justify-content-center">
-        <form action="{{ route('listing.create') }}" method="GET" class="py-4 px-sm-5 px-4 rounded-2 shadow bg-white sectionMargin" style="width: fit-content">
+        <form action="{{ route('listing.create') }}" method="GET" class="p-sm-5 p-4 rounded-2 shadow bg-white sectionMargin" style="width: fit-content">
             <div class="d-flex flex-md-row flex-column">
-                <div style="margin-right: 6rem" class="mb-md-0 mb-5">
-                    <h2 class="fs-5 mb-4">Izaberite transakciju:</h2>
+                <fieldset style="margin-right: 6rem" class="mb-md-0 mb-5">
+                    <legend class="fs-5 mb-4 fw-semibold">Izaberite transakciju:</legend>
                     <input type="radio" name="transaction" id="sell" value="sell" class="mb-3" required>
                     <lable for="sell">PRODAJA</lable>
                     <br>
                     <input type="radio" name="transaction" id="rent" value="rent" required>
                     <lable for="rent">IZDAVANJE</lable>
-                </div>
+                </fieldset>
 
-                <div>
-                    <h2 class="fs-5 mb-4">Izaberite tip nekretnine:</h2>
-                    <input type="radio" name="real_estate" id="house" value="house" class="mb-3" required>
+                <fieldset>
+                    <legend class="fs-5 mb-4 fw-semibold">Izaberite tip nekretnine:</legend>
+                    <input type="radio" name="property" id="house" value="house" class="mb-3" required>
                     <lable for="house">KUĆA</lable>
                     <br>
-                    <input type="radio" name="real_estate" id="apartment" value="apartment" required>
+                    <input type="radio" name="property" id="apartment" value="apartment" required>
                     <lable for="apartment">STAN</lable>
-                </div>
+                </fieldset>
             </div>
 
             <div class="d-flex justify-content-end mt-5">

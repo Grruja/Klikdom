@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h1 class="font-semibold text-xl text-gray-800 leading-tight">
                 <a href={{ \Illuminate\Support\Facades\URL::previous() }}>
-                    <i class="fa-solid fa-chevron-left"></i>
+                    <i class="fa-solid fa-chevron-left" style="margin-right: 10px"></i>
                 </a>
                 {{ __('Profile') }}
-            </h2>
+            </h1>
 
             <div class="shrink-0 flex items-center">
                 <a href="/" class="navbar-brand">
