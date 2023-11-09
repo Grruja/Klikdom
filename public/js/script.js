@@ -8,6 +8,54 @@ document.getElementById("openMenu").addEventListener('click',function (e){
 });
 
 
+// ===== CHECKBOX DROPDOWN
+dropdownCheckboxes('suitable', 'suitableText', 'suitableDropdown');
+
+/* functions */
+function dropdownCheckboxes(btnId, textId, dropdownId) {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+
+    const text = document.getElementById(textId);
+    const dropdown = document.getElementById(dropdownId);
+    const checkboxes = dropdown.querySelectorAll('.form-check-input');
+
+    btn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        dropdown.classList.toggle('d-none');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target)) {
+            dropdown.classList.add('d-none');
+        }
+    });
+
+    displayCheckboxValue(text, checkboxes);
+}
+
+function displayCheckboxValue(text, checkboxes) {
+    const boxesChecked = [];
+    checkboxes.forEach((box) => {
+        box.addEventListener('change', () => {
+            if (box.checked) {
+                const span = document.createElement('span');
+                span.innerText = (boxesChecked.length < 1) ? `${box.value}` : `, ${box.value}`;
+                text.appendChild(span);
+                boxesChecked.push(span);
+            }
+            else {
+                const index = boxesChecked.findIndex((span) => span.innerText.includes(box.value));
+                if (index !== -1) {
+                    boxesChecked[index].remove();
+                    boxesChecked.splice(index, 1);
+                }
+            }
+        });
+    });
+}
+
+
 // ===== LOCATION
 callLocationsOnKeyUp('locationSearch', 'searchDropdown');
 
@@ -71,7 +119,7 @@ function displayLocations(locations, locationSearch, searchDropdown) {
         const locationLength = location.allParentTitles.length;
         if (locationLength > 1) {
             let li = document.createElement('li');
-            li.className = 'pointer';
+            li.className = 'pointer border-bottom pb-2';
             locationIcon(li);
             pickLocation(li, locationSearch);
 

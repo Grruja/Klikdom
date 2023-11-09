@@ -5,8 +5,23 @@
         <form action="" method="POST" class="sectionMargin">
             <fieldset class="bg-white shadow rounded-2 p-4">
                 <legend class="fw-semibold">Stan za izdavanje</legend>
+                <input type="hidden" name="transaction" value="izdavanje">
+                <input type="hidden" name="property" value="stan">
 
                 <div class="row g-3">
+                    <div class="form-floating">
+                        <select name="type" required id="type" class="form-select">
+                            <option value="" disabled selected hidden></option>
+                            <option value="uknjiženo">Stan u zgradi</option>
+                            <option value="nije uknjiženo">Stan u kući</option>
+                            <option value="u procesu uknjižavanja">Apartman</option>
+                            <option value="delimično uknjižen">Salonac</option>
+                            <option value="delimično uknjižen">Penthaus</option>
+                            <option value="delimično uknjižen">Dvorišni stan</option>
+                            <option value="delimično uknjižen">Dupleks</option>
+                        </select>
+                        <label for="type" class="text-secondary ms-2">Tip stana *</label>
+                    </div>
                     <div>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-location-dot" style="color: var(--color-primary)"></i></span>
@@ -16,8 +31,8 @@
                             </div>
                         </div>
                         <ul id="searchDropdown"
-                            style="max-height: 200px; min-height: 30px; overflow: auto"
-                            class="d-none border border-secondary shadow py-2 px-3 d-flex flex-column gap-2">
+                            style="max-height: 200px; min-height: 30px; overflow: auto; z-index: 3"
+                            class="d-none bg-white border border-secondary shadow py-2 px-3 d-flex flex-column gap-2 position-absolute">
                         </ul>
                     </div>
                     <div class="form-floating col-3">
@@ -25,14 +40,14 @@
                         <label for="street" class="text-secondary ms-2">Ulica *</label>
                     </div>
                     <div class="form-floating col-3">
-                        <input type="text" name="apartment_number" id="apartmentNumber" class="form-control" placeholder="Broj">
-                        <label for="apartmentNumber" class="text-secondary ms-2">Broj</label>
+                        <input type="text" name="property_number" id="propertyNumber" class="form-control" placeholder="Broj">
+                        <label for="propertyNumber" class="text-secondary ms-2">Broj</label>
                     </div>
                 </div>
 
                 <div class="row g-3 mt-1">
                     <div class="form-floating col-3">
-                        <select name="rooms_number" required id="roomsNumber" class="form-select">
+                        <select name="rooms" required id="rooms" class="form-select">
                             <option value="" disabled selected hidden></option>
                             <option value="garsonjera">Garsonjera</option>
                             <option value="1 soba">Jednosoban stan</option>
@@ -51,7 +66,7 @@
                             <option value="7.5 soba">Sedmoiposoban stan</option>
                             <option value="8 soba">Osmosoban stan</option>
                         </select>
-                        <label for="roomsNumber" class="text-secondary ms-2">Broj soba *</label>
+                        <label for="rooms" class="text-secondary ms-2">Broj soba *</label>
                     </div>
                     <div class="form-floating col-3">
                         <select name="registered" id="registered" class="form-select">
@@ -164,7 +179,7 @@
 
                 <div class="row g-3 mt-1">
                     <div class="form-floating col-3">
-                        <select name="internet" id="internet" class="form-select">
+                        <select name="internet_type" id="internet_type" class="form-select">
                             <option value="" disabled selected hidden></option>
                             <option value="nema">Nema</option>
                             <option value="ADSL">ADSL</option>
@@ -173,13 +188,48 @@
                             <option value="satelitski">Satelitski</option>
                             <option value="bežični">Bežični</option>
                         </select>
-                        <label for="internet" class="text-secondary ms-2">Tip interneta</label>
+                        <label for="internet_type" class="text-secondary ms-2">Tip interneta</label>
                     </div>
                     <div class="form-check col-3 d-flex align-items-center ms-3">
-                        <input type="checkbox" name="air_conditioning" class="form-check-input me-3" value="klima" id="air_conditioning">
+                        <input type="checkbox" name="name" class="form-check-input me-3" value="klima" id="air_conditioning">
                         <label class="form-check-label" for="air_conditioning">
                             Klima
                         </label>
+                    </div>
+                </div>
+
+                <div class="row g-3 mt-1">
+                    <div class="form-floating col-3">
+                        <div class="form-select" id="suitable">
+                            <div class="pe-2 overflow-hidden" style="white-space: nowrap" id="suitableText"></div>
+                        </div>
+                        <ul class="d-none border bg-white border-secondary shadow py-2 px-3 position-absolute" id="suitableDropdown">
+                            <li>
+                                <div class="form-check">
+                                    <input type="checkbox" name="suitable[]" class="form-check-input me-md-3" value="Radnike" id="workers">
+                                    <label class="form-check-label" for="workers">
+                                        Radnike
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-check">
+                                    <input type="checkbox" name="suitable[]" class="form-check-input me-md-3" value="Porodicu" id="family">
+                                    <label class="form-check-label" for="family">
+                                        Porodicu
+                                    </label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-check">
+                                    <input type="checkbox" name="suitable[]" class="form-check-input me-md-3" value="Studente" id="students">
+                                    <label class="form-check-label" for="students">
+                                        Studente
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                        <label for="suitable" class="text-secondary ms-2">Pogodno za</label>
                     </div>
                 </div>
             </fieldset>
