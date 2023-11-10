@@ -8,51 +8,21 @@ document.getElementById("openMenu").addEventListener('click',function (e){
 });
 
 
-// ===== CHECKBOX DROPDOWN
-dropdownCheckboxes('suitable', 'suitableText', 'suitableDropdown');
-
-/* functions */
-function dropdownCheckboxes(btnId, textId, dropdownId) {
-    const btn = document.getElementById(btnId);
-    if (!btn) return;
-
-    const text = document.getElementById(textId);
-    const dropdown = document.getElementById(dropdownId);
-    const checkboxes = dropdown.querySelectorAll('.form-check-input');
-
-    btn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        dropdown.classList.toggle('d-none');
-    });
-
-    document.addEventListener('click', (event) => {
-        if (!dropdown.contains(event.target)) {
-            dropdown.classList.add('d-none');
-        }
-    });
-
-    displayCheckboxValue(text, checkboxes);
-}
-
-function displayCheckboxValue(text, checkboxes) {
-    const boxesChecked = [];
-    checkboxes.forEach((box) => {
-        box.addEventListener('change', () => {
-            if (box.checked) {
-                const span = document.createElement('span');
-                span.innerText = (boxesChecked.length < 1) ? `${box.value}` : `, ${box.value}`;
-                text.appendChild(span);
-                boxesChecked.push(span);
-            }
-            else {
-                const index = boxesChecked.findIndex((span) => span.innerText.includes(box.value));
-                if (index !== -1) {
-                    boxesChecked[index].remove();
-                    boxesChecked.splice(index, 1);
-                }
-            }
-        });
-    });
+// ===== LOADING SPINNER
+function loadingSpinner(status, spinnerId, parentId) {
+    if (status) {
+        const parent = document.getElementById(parentId);
+        parent.innerHTML = '';
+        const div = document.createElement('div');
+        div.id = spinnerId;
+        div.innerHTML = `<div class="spinner-border" style="color: var(--color-primary)" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>`
+        parent.appendChild(div);
+    }
+    else {
+        document.getElementById(spinnerId).remove();
+    }
 }
 
 
@@ -119,7 +89,7 @@ function displayLocations(locations, locationSearch, searchDropdown) {
         const locationLength = location.allParentTitles.length;
         if (locationLength > 1) {
             let li = document.createElement('li');
-            li.className = 'pointer border-bottom pb-2';
+            li.className = 'pointer border-top pt-2';
             locationIcon(li);
             pickLocation(li, locationSearch);
 
@@ -161,3 +131,110 @@ function locationIcon(parentElement) {
     icon.style.color = 'var(--color-primary)';
     parentElement.appendChild(icon);
 }
+
+
+// ===== CHECKBOX DROPDOWN
+dropdownCheckboxes('suitable', 'suitableText', 'suitableDropdown');
+dropdownCheckboxes('parkingType', 'parkingTypeText', 'parkingTypeDropdown');
+dropdownCheckboxes('view', 'viewText', 'viewDropdown');
+
+/* functions */
+function dropdownCheckboxes(btnId, textId, dropdownId) {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+
+    const text = document.getElementById(textId);
+    const dropdown = document.getElementById(dropdownId);
+    const checkboxes = dropdown.querySelectorAll('.form-check-input');
+
+    btn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        dropdown.classList.toggle('d-none');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!dropdown.contains(event.target)) {
+            dropdown.classList.add('d-none');
+        }
+    });
+
+    displayCheckboxValue(text, checkboxes);
+}
+
+function displayCheckboxValue(text, checkboxes) {
+    const boxesChecked = [];
+    checkboxes.forEach((box) => {
+        box.addEventListener('change', () => {
+            if (box.checked) {
+                const span = document.createElement('span');
+                span.innerText = (boxesChecked.length < 1) ? `${box.value}` : `, ${box.value}`;
+                text.appendChild(span);
+                boxesChecked.push(span);
+            }
+            else {
+                const index = boxesChecked.findIndex((span) => span.innerText.includes(box.value));
+                if (index !== -1) {
+                    boxesChecked[index].remove();
+                    boxesChecked.splice(index, 1);
+                }
+            }
+        });
+    });
+}
+
+
+// ===== DATE PICKER & CHECKBOX
+disableAvailableFrom();
+
+/* functions */
+function disableAvailableFrom() {
+    const date = document.getElementById('availableFrom');
+    if (!date) return;
+    const checkbox = document.getElementById('availableNow');
+
+    date.addEventListener('change', () => {
+        if (date.value.trim()) {
+            checkbox.setAttribute('disabled', '');
+        }
+        else checkbox.removeAttribute('disabled');
+    });
+
+    checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+            date.setAttribute('disabled', '');
+        }
+        else date.removeAttribute('disabled');
+    });
+}
+
+
+// ===== IMAGE UPLOAD PREVIEW
+const images = document.getElementById('inputImages');
+const imagesContainer = document.getElementById('imagesContainer');
+const imagesArray = [];
+
+images.addEventListener('change', () => {
+    const files = images.files;
+
+    for (let i = 0; i < files.length; i++) {
+        imagesArray.push(files[i]);
+    }
+    displayImages();
+});
+
+/* functions */
+function displayImages() {
+    let images = '';
+    loadingSpinner(true, 'imageSpinner', 'imagesContainer');
+
+    imagesArray.forEach((image, index) => {
+        images += `<div style="width: 250px; height: 250px" class="p-3 rounded-2 border">
+                    <img src="${URL.createObjectURL(image)}" alt="Property" class="w-100 h-100" style="object-fit: contain">
+                  </div>`
+    });
+    imagesContainer.innerHTML = images;
+}
+
+
+
+
