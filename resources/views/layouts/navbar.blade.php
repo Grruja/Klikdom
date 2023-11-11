@@ -77,27 +77,27 @@
                                 </li>
                             </ul>
                         @endif
-                        <ul class="d-lg-none d-flex flex-column gap-3 pb-4">
+                        <ul class="d-lg-none d-flex flex-column gap-4 pb-4">
                             <li class="nav-item">
-                                <a href="/" class="nav-link navHover">
+                                <a href="/" class="navHover">
                                     <i class="fa-solid fa-house me-2"></i>
                                     Naslovna
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('listing.type') }}" class="nav-link navHover">
+                                <a href="{{ route('listing.type') }}" class="navHover">
                                     <i class="fa-solid fa-pen-to-square me-2"></i>
                                     Postavi oglas
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/" class="nav-link navHover">Moji oglasi</a>
+                                <a href="/" class="navHover">Moji oglasi</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/" class="nav-link navHover">Sačuvani oglasi</a>
+                                <a href="/" class="navHover">Sačuvani oglasi</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('profile.edit') }}" class="nav-link navHover">Podešavanja</a>
+                                <a href="{{ route('profile.edit') }}" class="navHover">Podešavanja</a>
                             </li>
                             @if (\Illuminate\Support\Facades\Auth::check())
                                 <li class="nav-item">
@@ -105,7 +105,7 @@
                                         @csrf
 
                                         <a href="{{ route('logout') }}"
-                                           class="nav-link navHover"
+                                           class="navHover"
                                            onclick="event.preventDefault();
                                                         this.closest('form').submit();">
                                             Odjavi se
@@ -114,11 +114,11 @@
                                 </li>
                             @endif
                         </ul>
-                        <ul class="d-lg-none d-flex flex-column gap-3 border-top border-bottom py-4">
+                        <ul class="d-lg-none d-flex flex-column gap-4 border-top border-bottom py-4">
                             <li>
                                 <a href="https://www.facebook.com"
                                    target="/"
-                                   class="nav-link navHover">
+                                   class="navHover">
                                     <i class="fa-brands fa-square-facebook me-2"></i>
                                     Facebook
                                 </a>
@@ -126,7 +126,7 @@
                             <li>
                                 <a href="https://www.instagram.com"
                                    target="/"
-                                   class="nav-link navHover">
+                                   class="navHover">
                                     <i class="fa-brands fa-instagram me-2"></i>
                                     Instagram
                                 </a>

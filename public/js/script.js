@@ -2,7 +2,7 @@
 const myOffcanvas = document.getElementById('offcanvasNavbar');
 const bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
 
-document.getElementById("openMenu").addEventListener('click',function (e){
+document.getElementById("openMenu").addEventListener('click', (e) => {
     e.preventDefault();
     bsOffcanvas.toggle();
 });
@@ -27,39 +27,50 @@ function loadingSpinner(status, spinnerId, parentId) {
 
 
 // ===== LOCATION
-callLocationsOnKeyUp('locationSearch', 'searchDropdown');
+let firstErrorElement = null;   //used in location and validation for other fields
+
+const locationSearch = document.getElementById('locationSearch');
+const searchDropdown = document.getElementById('searchDropdown');
+const errorLocation = document.getElementById('errorLocation');
+
+selectLocation();
 
 /* functions */
-function callLocationsOnKeyUp(searchId, dropdownId) {
-    const locationSearch = document.getElementById(searchId);
-    if (!locationSearch) return;
-
-    const searchDropdown = document.getElementById(dropdownId);
-
+function selectLocation() {
     let timer;
     const waitTime = 1500;
-    locationSearch.addEventListener('keyup', () => {
+    locationSearch.addEventListener('input', () => {
         clearTimeout(timer);
 
         timer = setTimeout(function() {
             if (locationSearch.value.trim().length > 2) {
-                deleteLocations(searchDropdown);
-                displayLocationsDropdown(searchDropdown, locationSearch);
+                deleteLocations();
+                displayLocationsDropdown();
             }
+            else {
+                searchDropdown.classList.add('d-none');
+            }
+            errorMessageLocation(true);
         }, waitTime);
     });
 }
 
-function displayLocationsDropdown(searchDropdown, locationSearch) {
+function displayLocationsDropdown() {
     const searchValue = locationSearch.value.trim();
 
     getLocations(searchValue)
         .then(locations => {
             if (locations.length > 0) {
-                displayLocations(locations, locationSearch, searchDropdown);
+                displayLocations(locations);
                 searchDropdown.classList.remove('d-none');
             }
-            else searchDropdown.classList.add('d-none');
+            else {
+                searchDropdown.classList.remove('d-none');
+                searchDropdown.innerHTML = `<div class="d-flex flex-column align-items-center my-4">
+                                                <i class="fa-solid fa-magnifying-glass fs-1 mb-2"></i>
+                                                <p class="fw-semibold text-secondary">Kraj pod imenom "${searchValue}" nije pronađen.</p>
+                                            </div>`;
+            }
         })
         .catch(error => {
             throw error;
@@ -70,7 +81,7 @@ function displayLocationsDropdown(searchDropdown, locationSearch) {
 
 async function getLocations(location) {
     try {
-        const response = await fetch(`https://api.4zida.rs/v6/autocomplete?q=${location}`);
+        const response = await fetch(`https://api.4zida.rs/v6/autocomplete?q=${location.toLowerCase()}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -82,7 +93,7 @@ async function getLocations(location) {
     }
 }
 
-function displayLocations(locations, locationSearch, searchDropdown) {
+function displayLocations(locations) {
     locations.forEach((location) => {
         if (location.allParentTitles.length < 1) return;
 
@@ -91,12 +102,12 @@ function displayLocations(locations, locationSearch, searchDropdown) {
             let li = document.createElement('li');
             li.className = 'pointer border-top pt-2';
             locationIcon(li);
-            pickLocation(li, locationSearch);
+            pickLocation(li);
 
             for (let j = locationLength - 1; j >= -1; j--) {
                 let span = document.createElement('span');
 
-                span.innerText =  (j < 0) ? `${location.title}` : `${location.allParentTitles[j]} - `;
+                span.textContent =  (j < 0) ? `${location.title}` : `${location.allParentTitles[j]} - `;
                 li.appendChild(span);
             }
             searchDropdown.appendChild(li);
@@ -104,24 +115,25 @@ function displayLocations(locations, locationSearch, searchDropdown) {
     });
 }
 
-function blurLocationsDropdown(searchDropdown, locationSearch) {
+function blurLocationsDropdown() {
     locationSearch.addEventListener('blur', () => {
         setTimeout(() => {
             searchDropdown.classList.add('d-none');
-            deleteLocations(searchDropdown);
+            deleteLocations();
         }, 200);
     });
 }
 
-function deleteLocations(searchDropdown) {
+function deleteLocations() {
     while (searchDropdown.firstChild) {
         searchDropdown.removeChild(searchDropdown.firstChild);
     }
 }
 
-function pickLocation(element, input) {
+function pickLocation(element) {
     element.addEventListener('click', () => {
-        input.value = element.innerText;
+        locationSearch.value = element.textContent;
+        errorMessageLocation(false);
     });
 }
 
@@ -130,6 +142,29 @@ function locationIcon(parentElement) {
     icon.className = 'fa-solid fa-location-dot me-3';
     icon.style.color = 'var(--color-primary)';
     parentElement.appendChild(icon);
+}
+
+function errorMessageLocation(error) {
+    if (error) {
+        errorLocation.textContent = 'Polje kraj je obavezno.';
+        locationSearch.classList.add('is-invalid');
+        setScrollOnError(locationSearch);
+    }
+    else {
+        errorLocation.textContent = '';
+        locationSearch.classList.remove('is-invalid');
+    }
+}
+
+function validationLocation() {
+    if (errorLocation.textContent) {
+        return false;
+    }
+    else if (locationSearch.value.trim() === '') {
+        errorMessageLocation(true);
+        return false;
+    }
+    else return true;
 }
 
 
@@ -167,12 +202,12 @@ function displayCheckboxValue(text, checkboxes) {
         box.addEventListener('change', () => {
             if (box.checked) {
                 const span = document.createElement('span');
-                span.innerText = (boxesChecked.length < 1) ? `${box.value}` : `, ${box.value}`;
+                span.textContent = (boxesChecked.length < 1) ? `${box.value}` : `, ${box.value}`;
                 text.appendChild(span);
                 boxesChecked.push(span);
             }
             else {
-                const index = boxesChecked.findIndex((span) => span.innerText.includes(box.value));
+                const index = boxesChecked.findIndex((span) => span.textContent.includes(box.value));
                 if (index !== -1) {
                     boxesChecked[index].remove();
                     boxesChecked.splice(index, 1);
@@ -236,5 +271,97 @@ function displayImages() {
 }
 
 
+// ===== VALIDATION
+const fields = [
+    { input: 'type', text: 'tip nekretnine', error: 'errorType', required: true, },
+    { input: 'street', text: 'ulica', error: 'errorStreet', minLength: 3, required: true, },
+    { input: 'propertyNumber', text: 'broj', error: 'errorPropertyNumber', minLength: 1, required: false, },
+    { input: 'roomsNumber', text: 'broj soba', error: 'errorRoomsNumber', required: true, },
+    { input: 'propertyArea', text: 'površina', error: 'errorPropertyArea', regex: /^[1-9]\d*(\.\d+)?$/, minLength: 1, required: true, },
+    { input: 'heating', text: 'grejanje', error: 'errorHeating', required: true, },
+    { input: 'floor', text: 'sprat', error: 'errorFloor', required: true, },
+    { input: 'totalFloors', text: 'ukupno spratova', error: 'errorTotalFloors', required: true, },
+    { input: 'price', text: 'cena', error: 'errorPrice', regex: /^(?:0|[1-9]\d*)(?:\.\d+)?$/, required: true, },
+    { input: 'deposit', text: 'depozit', error: 'errorDeposit', regex: /^(?:0|[1-9]\d*)(?:\.\d+)?$/, required: false, },
+    { input: 'paymentSchedule', text: 'dinamika plaćanja', error: 'errorPaymentSchedule', required: true, },
+    { input: 'garageSpace', text: 'broj mesta u garaži', error: 'errorGarageSpace', regex: /^[1-9]\d*(\.\d+)?$/, required: false, },
+    { input: 'description', text: 'opis', error: 'errorDescription', minLength: 5, required: false, },
+];
 
+addEventListener();
+submitListing();
 
+/* functions */
+function addEventListener() {
+    fields.forEach((field) => {
+        const inputElement = document.getElementById(field.input);
+        inputElement.addEventListener('input', () => validateField(field));
+    });
+}
+
+function validateField(field) {
+    let isValid = false;
+
+    const inputElement = document.getElementById(field.input);
+    const errorElement = document.getElementById(field.error);
+    const inputValue = inputElement.value.trim();
+
+    if (field.required && inputValue === '' || field.required && inputValue === '') {
+        errorElement.textContent = `Polje ${field.text} je obavezno.`;
+    }
+    else if (field.regex && !field.regex.test(inputValue) && inputValue.length > 0) {
+        errorElement.textContent = `Polje ${field.text} je uneto u nepravilnom formatu.`;
+    }
+    else if (inputValue.length > 0 && inputValue.length < field.minLength) {
+        errorElement.textContent = `Polje ${field.text} mora sadržati barem ${field.minLength} karaktera.`;
+    }
+    else {
+        errorElement.textContent = '';
+        isValid = true;
+    }
+
+    if (errorElement.textContent) {
+        inputElement.classList.add('is-invalid');
+        setScrollOnError(inputElement);
+    }
+    else {
+        inputElement.classList.remove('is-invalid');
+    }
+
+    return isValid;
+}
+
+function submitListing() {
+    const btn = document.getElementById('submitListing');
+    btn.addEventListener('click', e => {
+        let canSubmit = true;
+        btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin me-2"></i>Postavi oglas`;
+
+        canSubmit = validationLocation();
+
+        firstErrorElement = null;
+        fields.forEach((field) => {
+            if (!validateField(field)) {
+                canSubmit = false;
+            }
+        });
+
+        if (!canSubmit) {
+            e.preventDefault();
+            scrollOnError();
+            btn.innerHTML = `<i class="fa-solid fa-check me-2"></i>Postavi oglas`;
+        }
+    });
+}
+
+function scrollOnError() {
+    if (firstErrorElement) {
+        firstErrorElement.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+function setScrollOnError(input) {
+    if (!firstErrorElement) {
+        return firstErrorElement = input;
+    }
+}
