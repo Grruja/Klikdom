@@ -2,23 +2,23 @@
 
 @section('pageContent')
     <div class="container">
-        <form action="" method="POST" class="sectionMargin">
+        <form action="{{ route('listing.create') }}" method="POST" class="sectionMargin" enctype="multipart/form-data">
+            {{ csrf_field() }}
+
             <fieldset class="bg-white shadow rounded-2 p-4">
                 <legend class="fw-bold fs-3">Stan za izdavanje</legend>
-                <input type="hidden" name="transaction" value="izdavanje">
-                <input type="hidden" name="property" value="stan">
-
+                
                 <div class="row g-3">
                     <div class="form-floating">
                         <select name="type" required id="type" class="form-select">
                             <option value="" disabled selected hidden></option>
-                            <option value="uknjiženo">Stan u zgradi</option>
-                            <option value="nije uknjiženo">Stan u kući</option>
-                            <option value="u procesu uknjižavanja">Apartman</option>
-                            <option value="delimično uknjižen">Salonac</option>
-                            <option value="delimično uknjižen">Penthaus</option>
-                            <option value="delimično uknjižen">Dvorišni stan</option>
-                            <option value="delimično uknjižen">Dupleks</option>
+                            <option value="stan u zgradi">Stan u zgradi</option>
+                            <option value="stan u kući">Stan u kući</option>
+                            <option value="apartman">Apartman</option>
+                            <option value="salonac">Salonac</option>
+                            <option value="penthaus">Penthaus</option>
+                            <option value="dvorišni stan">Dvorišni stan</option>
+                            <option value="dupleks">Dupleks</option>
                         </select>
                         <label for="type" class="text-secondary ms-2">Tip stana *</label>
                         <p class="text-danger clientError" id="errorType"></p>
@@ -202,7 +202,7 @@
                         <label for="internetType" class="text-secondary ms-2">Tip interneta</label>
                     </div>
                     <div class="form-check col-lg-3 col-md-4 d-flex align-items-center ms-3">
-                        <input type="checkbox" name="name[]" class="form-check-input me-3" value="klima" id="airConditioning">
+                        <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="klima" id="airConditioning">
                         <label class="form-check-label" for="airConditioning">
                             Klima
                         </label>
@@ -292,10 +292,10 @@
                         <select name="payment_schedule" required id="paymentSchedule" class="form-select">
                             <option value="" disabled selected hidden></option>
                             <option value="Dan">Dan</option>
-                            <option value="Mesec">Mesec</option>
+                            <option value="mesec">Mesec</option>
                             <option value="3 meseca">3 meseca</option>
                             <option value="6 meseci">6 meseci</option>
-                            <option value="Godinu dana">Godinu dana</option>
+                            <option value="godinu dana">Godinu dana</option>
                         </select>
                         <label for="paymentSchedule" class="text-secondary ms-2">Dinamika plaćanja *</label>
                         <p class="text-danger clientError" id="errorPaymentSchedule"></p>
@@ -322,7 +322,7 @@
 
                     <div class="row g-3 mt-1">
                         <div class="form-floating col-lg-3 col-md-4">
-                            <select name="list[]" id="loggia" class="form-select">
+                            <select name="infrastructure[]" id="loggia" class="form-select">
                                 <option value="" disabled selected hidden></option>
                                 <option value="nema lođu">Nema</option>
                                 <option value="lođa (1)">1</option>
@@ -332,7 +332,7 @@
                             <label for="loggia" class="text-secondary ms-2">Lođa</label>
                         </div>
                         <div class="form-floating col-lg-3 col-md-4">
-                            <select name="list[]" id="balcony" class="form-select">
+                            <select name="infrastructure[]" id="balcony" class="form-select">
                                 <option value="" disabled selected hidden></option>
                                 <option value="nema terasu">Nema</option>
                                 <option value="terasa (1)">1</option>
@@ -345,7 +345,7 @@
 
                     <div class="row g-3 mt-1">
                         <div class="form-floating col-lg-3 col-md-4">
-                            <select name="rooms[]" id="bathroom" class="form-select">
+                            <select name="interior_rooms[]" id="bathroom" class="form-select">
                                 <option value="" disabled selected hidden></option>
                                 <option value="nema kupatilo">Nema</option>
                                 <option value="kupatilo (1)">1</option>
@@ -355,7 +355,7 @@
                             <label for="bathroom" class="text-secondary ms-2">Kupatilo</label>
                         </div>
                         <div class="form-floating col-lg-3 col-md-4">
-                            <select name="rooms[]" id="toilet" class="form-select">
+                            <select name="interior_rooms[]" id="toilet" class="form-select">
                                 <option value="" disabled selected hidden></option>
                                 <option value="nema toalet">Nema</option>
                                 <option value="toalet (1)">1</option>
@@ -368,109 +368,109 @@
 
                     <div class="row g-3 mt-1 p-2">
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="rooms[]" class="form-check-input me-3" value="kuhinja" id="kitchen">
+                            <input type="checkbox" name="interior_rooms[]" class="form-check-input me-3" value="kuhinja" id="kitchen">
                             <label class="form-check-label" for="kitchen">
                                 Kuhinja
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="rooms[]" class="form-check-input me-3" value="ostava" id="storage">
+                            <input type="checkbox" name="interior_rooms[]" class="form-check-input me-3" value="ostava" id="storage">
                             <label class="form-check-label" for="storage">
                                 Ostava
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="rooms[]" class="form-check-input me-3" value="podrum" id="basement">
+                            <input type="checkbox" name="interior_rooms[]" class="form-check-input me-3" value="podrum" id="basement">
                             <label class="form-check-label" for="basement">
                                 Podrum
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="rooms[]" class="form-check-input me-3" value="tavan" id="loft">
+                            <input type="checkbox" name="interior_rooms[]" class="form-check-input me-3" value="tavan" id="loft">
                             <label class="form-check-label" for="loft">
                                 Tavan
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="poslovni nameštaj" id="equipment1">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="poslovni nameštaj" id="equipment1">
                             <label class="form-check-label" for="equipment1">
                                 Poslovni nameštaj
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="plakar" id="equipment2">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="plakar" id="equipment2">
                             <label class="form-check-label" for="equipment2">
                                 Plakar
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="ugradni plakar" id="equipment3">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="ugradni plakar" id="equipment3">
                             <label class="form-check-label" for="equipment3">
                                 Ugradni plakar
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="američki plakar" id="equipment4">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="američki plakar" id="equipment4">
                             <label class="form-check-label" for="equipment4">
                                 Američki plakar
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="tv" id="equipment5">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="tv" id="equipment5">
                             <label class="form-check-label" for="equipment5">
                                 TV
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="ležaj" id="equipment6">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="ležaj" id="equipment6">
                             <label class="form-check-label" for="equipment6">
                                 Ležaj
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="veš mašina" id="equipment7">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="veš mašina" id="equipment7">
                             <label class="form-check-label" for="equipment7">
                                 Veš mašina
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="kuhinjski elementi" id="equipment8">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="kuhinjski elementi" id="equipment8">
                             <label class="form-check-label" for="equipment8">
                                 Kuhinjski elementi
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="sudo mašina" id="equipment9">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="sudo mašina" id="equipment9">
                             <label class="form-check-label" for="equipment9">
                                 Sudo mašina
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="frižider" id="equipment10">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="frižider" id="equipment10">
                             <label class="form-check-label" for="equipment10">
                                 Frižider
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="zamrzivač" id="equipment11">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="zamrzivač" id="equipment11">
                             <label class="form-check-label" for="equipment11">
                                 Zamrzivač
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="mikrotalasna rerna" id="equipment12">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="mikrotalasna rerna" id="equipment12">
                             <label class="form-check-label" for="equipment12">
                                 Mikrotalasna rerna
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="rerna" id="equipment13">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="rerna" id="equipment13">
                             <label class="form-check-label" for="equipment13">
                                 Rerna
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="šporet" id="equipment14">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="šporet" id="equipment14">
                             <label class="form-check-label" for="equipment14">
                                 Šporet
                             </label>
@@ -502,7 +502,7 @@
                                     id="parkingTypeDropdown">
                                     <li>
                                         <div class="form-check">
-                                            <input type="checkbox" name="parking_type[]" class="form-check-input" value="javni parking van zone" id="parking1">
+                                            <input type="checkbox" name="parking_garage[]" class="form-check-input" value="javni parking van zone" id="parking1">
                                             <label class="form-check-label" for="parking1">
                                                 Javni parking van zone
                                             </label>
@@ -510,7 +510,7 @@
                                     </li>
                                     <li>
                                         <div class="form-check">
-                                            <input type="checkbox" name="parking_type[]" class="form-check-input" value="javni parking u zoni" id="parking2">
+                                            <input type="checkbox" name="parking_garage[]" class="form-check-input" value="javni parking u zoni" id="parking2">
                                             <label class="form-check-label" for="parking2">
                                                 Javni parking u zoni
                                             </label>
@@ -518,7 +518,7 @@
                                     </li>
                                     <li>
                                         <div class="form-check">
-                                            <input type="checkbox" name="parking_type[]" class="form-check-input" value="parking u dvorištu zgrade" id="parking3">
+                                            <input type="checkbox" name="parking_garage[]" class="form-check-input" value="parking u dvorištu zgrade" id="parking3">
                                             <label class="form-check-label" for="parking3">
                                                 Parking u dvorištu zgrade
                                             </label>
@@ -526,7 +526,7 @@
                                     </li>
                                     <li>
                                         <div class="form-check">
-                                            <input type="checkbox" name="parking_type[]" class="form-check-input" value="garaža u sklopu objekta" id="parking4">
+                                            <input type="checkbox" name="parking_garage[]" class="form-check-input" value="garaža u sklopu objekta" id="parking4">
                                             <label class="form-check-label" for="parking4">
                                                 Garaža u sklopu objekta
                                             </label>
@@ -534,7 +534,7 @@
                                     </li>
                                     <li>
                                         <div class="form-check">
-                                            <input type="checkbox" name="parking_type[]" class="form-check-input" value="javna garaža" id="parking5">
+                                            <input type="checkbox" name="parking_garage[]" class="form-check-input" value="javna garaža" id="parking5">
                                             <label class="form-check-label" for="parking5">
                                                 Javna garaža
                                             </label>
@@ -553,13 +553,13 @@
 
                     <div class="row g-3 mt-1 p-2">
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="telefonska linija" id="equipment15">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="telefonska linija" id="equipment15">
                             <label class="form-check-label" for="equipment15">
                                 Telefonska linija
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="name[]" class="form-check-input me-3" value="kablovska" id="equipment16">
+                            <input type="checkbox" name="equipment[]" class="form-check-input me-3" value="kablovska" id="equipment16">
                             <label class="form-check-label" for="equipment16">
                                 Kablovska
                             </label>
@@ -577,7 +577,7 @@
                                     id="viewDropdown">
                                     <li>
                                         <div class="form-check">
-                                            <input type="checkbox" name="viewOn[]" class="form-check-input" value="pogled ka ulici" id="streetView">
+                                            <input type="checkbox" name="view[]" class="form-check-input" value="pogled ka ulici" id="streetView">
                                             <label class="form-check-label" for="streetView">
                                                 Pogled ka ulici
                                             </label>
@@ -585,7 +585,7 @@
                                     </li>
                                     <li>
                                         <div class="form-check">
-                                            <input type="checkbox" name="viewOn[]" class="form-check-input" value="pogled ka dvorištu" id="yardView">
+                                            <input type="checkbox" name="view[]" class="form-check-input" value="pogled ka dvorištu" id="yardView">
                                             <label class="form-check-label" for="yardView">
                                                 Pogled ka dvorištu
                                             </label>
@@ -599,55 +599,55 @@
 
                     <div class="row g-3 mt-1 p-2">
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="list[]" class="form-check-input me-3" value="prilaz za invalide" id="invalids">
+                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="prilaz za invalide" id="invalids">
                             <label class="form-check-label" for="invalids">
                                 Prilaz za invalide
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="list[]" class="form-check-input me-3" value="dvorište" id="yard">
+                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="dvorište" id="yard">
                             <label class="form-check-label" for="yard">
                                 Dvorište
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="list[]" class="form-check-input me-3" value="sauna" id="sauna">
+                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="sauna" id="sauna">
                             <label class="form-check-label" for="sauna">
                                 Sauna
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="list[]" class="form-check-input me-3" value="fitness" id="fitness">
+                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="fitness" id="fitness">
                             <label class="form-check-label" for="fitness">
                                 Fitness
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="list[]" class="form-check-input me-3" value="ventilacija" id="ventilation">
+                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="ventilacija" id="ventilation">
                             <label class="form-check-label" for="ventilation">
                                 Ventilacija
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="list[]" class="form-check-input me-3" value="centralna klima" id="centralAc">
+                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="centralna klima" id="centralAc">
                             <label class="form-check-label" for="centralAc">
                                 Centralna klima
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="list[]" class="form-check-input me-3" value="video nadzor" id="surveillance">
+                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="video nadzor" id="surveillance">
                             <label class="form-check-label" for="surveillance">
                                 Video nadzor
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="list[]" class="form-check-input me-3" value="alarm" id="alarm">
+                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="alarm" id="alarm">
                             <label class="form-check-label" for="alarm">
                                 Alarm
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="list[]" class="form-check-input me-3" value="recepcija" id="reception">
+                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="recepcija" id="reception">
                             <label class="form-check-label" for="reception">
                                 Recepcija
                             </label>
@@ -676,13 +676,15 @@
 
                 <div class="d-flex flex-column align-items-center">
                     <output class="py-5 d-flex flex-wrap gap-4 justify-content-center" id="imagesContainer">
-                        <i class="fa-solid fa-arrow-up-from-bracket" style="font-size: 100px; color: #9ca3af"></i>
+                        <i class="fa-solid fa-arrow-up-from-bracket" style="font-size: 70px; color: #9ca3af"></i>
                     </output>
                     <label for="inputImages" class="btnPrimary pointer">
-                        <input type="file" name="images" id="inputImages" data-max-file-size="2M" multiple="multiple" accept="image/jpeg, image/png, image/jpg" hidden/>
+                        <input type="file" name="images[]" id="inputImages" data-max-file-size="2M" multiple accept="image/jpeg, image/png, image/jpg" hidden/>
                         <i class="fa-solid fa-plus me-2"></i>
                         Unesi fotografiju
                     </label>
+                    <p class="text-secondary fw-bold mt-3" style="font-size: 13px">PNG, JPG ili JPEG do 5MB</p>
+                    <p class="text-danger clientError mt-3" id="errorImages"></p>
                 </div>
             </fieldset>
 

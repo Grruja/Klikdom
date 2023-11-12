@@ -2,23 +2,23 @@
 
 @section('pageContent')
     <div class="container d-flex justify-content-center">
-        <form action="{{ route('listing.create') }}" method="GET" class="p-sm-5 p-4 rounded-2 shadow bg-white sectionMargin" style="width: fit-content">
+        <form action="{{ route('listing.form') }}" method="GET" class="p-sm-5 p-4 rounded-2 shadow bg-white sectionMargin" style="width: fit-content">
             <div class="d-flex flex-md-row flex-column">
                 <fieldset style="margin-right: 6rem" class="mb-md-0 mb-5">
                     <legend class="fs-5 mb-4 fw-semibold">Izaberite transakciju:</legend>
-                    <input type="radio" name="transaction" id="sell" value="sell" class="mb-3" required>
+                    <input type="radio" name="transaction" id="sell" value="prodaja" class="mb-3" required>
                     <lable for="sell">PRODAJA</lable>
                     <br>
-                    <input type="radio" name="transaction" id="rent" value="rent" required>
+                    <input type="radio" name="transaction" id="rent" value="izdavanje" required>
                     <lable for="rent">IZDAVANJE</lable>
                 </fieldset>
 
                 <fieldset>
                     <legend class="fs-5 mb-4 fw-semibold">Izaberite tip nekretnine:</legend>
-                    <input type="radio" name="property" id="house" value="house" class="mb-3" required>
+                    <input type="radio" name="property" id="house" value="kuća" class="mb-3" required>
                     <lable for="house">KUĆA</lable>
                     <br>
-                    <input type="radio" name="property" id="apartment" value="apartment" required>
+                    <input type="radio" name="property" id="apartment" value="stan" required>
                     <lable for="apartment">STAN</lable>
                 </fieldset>
             </div>

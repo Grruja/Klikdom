@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class displayFormRequest extends FormRequest
+class DisplayFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class displayFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'transaction' => 'required|in:sell,rent',
-            'property' => 'required|in:house,apartment',
+            'transaction' => 'required|in:prodaja,izdavanje',
+            'property' => 'required|in:kuća,stan',
         ];
     }
 }

@@ -26,7 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::view('/postavi-oglas', 'listing.create.listingType')->name('listing.type');
 
     Route::controller(ListingController::class)->name('listing.')->group(function () {
-        Route::get('/postavi-oglas/detalji-nekretnine', 'displayForm')->name('create');
+        Route::get('/postavi-oglas/detalji-nekretnine', 'displayForm')->name('form');
+        Route::post('/kreiraj-oglas', 'createListing')->name('create');
     });
 });
 
