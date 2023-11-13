@@ -50,7 +50,7 @@ function selectLocation() {
             else {
                 searchDropdown.classList.add('d-none');
             }
-            errorMessageLocation(true);
+            validateLocation(true);
         }, waitTime);
     });
 }
@@ -67,7 +67,7 @@ function displayLocationsDropdown() {
             else {
                 searchDropdown.classList.remove('d-none');
                 searchDropdown.innerHTML = `<div class="d-flex flex-column align-items-center my-4">
-                                                <i class="fa-solid fa-magnifying-glass fs-1 mb-2"></i>
+                                                <i class="fa-solid fa-magnifying-glass fs-1 mb-2" style="color: var(--color-primary)"></i>
                                                 <p class="fw-semibold text-secondary">Kraj pod imenom "${searchValue}" nije pronađen.</p>
                                             </div>`;
             }
@@ -133,7 +133,7 @@ function deleteLocations() {
 function pickLocation(element) {
     element.addEventListener('click', () => {
         locationSearch.value = element.textContent;
-        errorMessageLocation(false);
+        validateLocation(false);
     });
 }
 
@@ -144,7 +144,7 @@ function locationIcon(parentElement) {
     parentElement.appendChild(icon);
 }
 
-function errorMessageLocation(error) {
+function validateLocation(error) {
     if (error) {
         errorLocation.textContent = 'Polje kraj je obavezno.';
         locationSearch.classList.add('is-invalid');
@@ -154,17 +154,6 @@ function errorMessageLocation(error) {
         errorLocation.textContent = '';
         locationSearch.classList.remove('is-invalid');
     }
-}
-
-function validationLocation() {
-    if (errorLocation.textContent) {
-        return false;
-    }
-    else if (locationSearch.value.trim() === '') {
-        errorMessageLocation(true);
-        return false;
-    }
-    else return true;
 }
 
 
@@ -246,18 +235,44 @@ function disableAvailableFrom() {
 // ===== IMAGE UPLOAD PREVIEW
 const images = document.getElementById('inputImages');
 const imagesContainer = document.getElementById('imagesContainer');
-const imagesArray = [];
+const imageSize = 5120;
+const errorImages = document.getElementById('errorImages');
+let imagesArray = [];
 
 images.addEventListener('change', () => {
     const files = images.files;
 
     for (let i = 0; i < files.length; i++) {
-        imagesArray.push(files[i]);
+        if (validateImages(files[i])) {
+            imagesArray.push(files[i]);
+            displayImages();
+        }
+        else {
+            images.value = '';
+            imagesArray = [];
+            imagesContainer.innerHTML = `<i class="fa-solid fa-arrow-up-from-bracket" style="font-size: 70px; color: #9ca3af"></i>`;
+            firstErrorElement = null;
+            setScrollOnError(images);
+        }
     }
-    displayImages();
 });
 
 /* functions */
+function validateImages(file) {
+    const regex = /(\.jpg|\.jpeg|\.png)$/i;
+
+    if (!regex.test(file.name)) {
+        errorImages.textContent = `Slika "${file.name}" je uneta u nepravilnom formatu. Podržani formati: jpg, png, jpeg.`;
+        return false;
+    }
+    else if (file.size / 1024 > imageSize) {
+        errorImages.textContent = `Slika "${file.name}" mora biti manja od ${imageSize / (imageSize / 2)}MB.`;
+        return false;
+    }
+    errorImages.textContent = '';
+    return true;
+}
+
 function displayImages() {
     let images = '';
     loadingSpinner(true, 'imageSpinner', 'imagesContainer');
@@ -286,6 +301,9 @@ const fields = [
     { input: 'paymentSchedule', text: 'dinamika plaćanja', error: 'errorPaymentSchedule', required: true, },
     { input: 'garageSpace', text: 'broj mesta u garaži', error: 'errorGarageSpace', regex: /^[1-9]\d*(\.\d+)?$/, required: false, },
     { input: 'description', text: 'opis', error: 'errorDescription', minLength: 5, required: false, },
+
+    { input: 'locationSearch', required: true, },
+    { input: 'inputImages', required: false, },
 ];
 
 addEventListener();
@@ -293,15 +311,13 @@ submitListing();
 
 /* functions */
 function addEventListener() {
-    fields.forEach((field) => {
-        const inputElement = document.getElementById(field.input);
-        inputElement.addEventListener('input', () => validateField(field));
-    });
+    for (let i = 0; i < fields.length - 2; i++) {
+        const inputElement = document.getElementById(fields[i].input);
+        inputElement.addEventListener('input', () => validateField(fields[i]));
+    }
 }
 
 function validateField(field) {
-    let isValid = false;
-
     const inputElement = document.getElementById(field.input);
     const errorElement = document.getElementById(field.error);
     const inputValue = inputElement.value.trim();
@@ -317,40 +333,40 @@ function validateField(field) {
     }
     else {
         errorElement.textContent = '';
-        isValid = true;
     }
 
     if (errorElement.textContent) {
         inputElement.classList.add('is-invalid');
+        firstErrorElement = null;
         setScrollOnError(inputElement);
     }
     else {
         inputElement.classList.remove('is-invalid');
     }
-
-    return isValid;
 }
 
 function submitListing() {
     const btn = document.getElementById('submitListing');
     btn.addEventListener('click', e => {
-        let canSubmit = true;
         btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin me-2"></i>Postavi oglas`;
 
-        canSubmit = validationLocation();
+        const errorMessages = document.querySelectorAll('.clientError');
 
-        firstErrorElement = null;
-        fields.forEach((field) => {
-            if (!validateField(field)) {
-                canSubmit = false;
+        errorMessages.forEach(error => {
+            if (error.textContent) {
+                e.preventDefault();
+                scrollOnError();
+                btn.innerHTML = `<i class="fa-solid fa-check me-2"></i>Postavi oglas`;
             }
         });
 
-        if (!canSubmit) {
-            e.preventDefault();
-            scrollOnError();
-            btn.innerHTML = `<i class="fa-solid fa-check me-2"></i>Postavi oglas`;
-        }
+        fields.forEach(field => {
+            const inputElement = document.getElementById(field.input);
+            if (field.required && inputElement.value === '') {
+                inputElement.classList.add('is-invalid');
+                btn.innerHTML = `<i class="fa-solid fa-check me-2"></i>Postavi oglas`;
+            }
+        });
     });
 }
 
