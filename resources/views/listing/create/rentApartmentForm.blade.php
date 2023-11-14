@@ -7,10 +7,10 @@
 
             <fieldset class="bg-white shadow rounded-2 p-4">
                 <legend class="fw-bold fs-3">Stan za izdavanje</legend>
-                
+
                 <div class="row g-3">
                     <div class="form-floating">
-                        <select name="type" required id="type" class="form-select">
+                        <select name="property_type" required id="propertyType" class="form-select">
                             <option value="" disabled selected hidden></option>
                             <option value="stan u zgradi">Stan u zgradi</option>
                             <option value="stan u kući">Stan u kući</option>
@@ -20,8 +20,8 @@
                             <option value="dvorišni stan">Dvorišni stan</option>
                             <option value="dupleks">Dupleks</option>
                         </select>
-                        <label for="type" class="text-secondary ms-2">Tip stana *</label>
-                        <p class="text-danger clientError" id="errorType"></p>
+                        <label for="propertyType" class="text-secondary ms-2">Tip stana *</label>
+                        <p class="text-danger clientError" id="errorPropertyType"></p>
                     </div>
                     <div>
                         <div class="input-group">

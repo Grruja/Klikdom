@@ -42,7 +42,7 @@ class CreateListingRequest extends FormRequest
         }
         else {
             return [
-                'type' => 'required|in:stan u zgradi,stan u kući,apartman,salonac,penthaus,dvorišni stan,dupleks',
+                'property_type' => 'required|in:stan u zgradi,stan u kući,apartman,salonac,penthaus,dvorišni stan,dupleks',
                 'location' => 'required',
                 'street' => 'required|min:3',
                 'property_number' => 'nullable|min:1',

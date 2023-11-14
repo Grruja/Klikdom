@@ -288,7 +288,7 @@ function displayImages() {
 
 // ===== VALIDATION
 const fields = [
-    { input: 'type', text: 'tip nekretnine', error: 'errorType', required: true, },
+    { input: 'propertyType', text: 'tip nekretnine', error: 'errorPropertyType', required: true, },
     { input: 'street', text: 'ulica', error: 'errorStreet', minLength: 3, required: true, },
     { input: 'propertyNumber', text: 'broj', error: 'errorPropertyNumber', minLength: 1, required: false, },
     { input: 'roomsNumber', text: 'broj soba', error: 'errorRoomsNumber', required: true, },
