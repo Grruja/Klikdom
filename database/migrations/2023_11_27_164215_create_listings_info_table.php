@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('listing_id');
             $table->string('property_number');
+            $table->string('construction_material', 30);
             $table->string('heating', 30);
             $table->json('interior_rooms');
             $table->float('rooms_number', 2, 1);

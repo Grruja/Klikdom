@@ -14,9 +14,14 @@ class ListingInfo extends Model
         'property_number',
         'construction_material',
         'heating',
+        'interior_rooms',
         'rooms_number',
-        'storeys_number',
         'floor',
         'total_floors',
+        'storeys_number',
+    ];
+
+    protected $casts = [
+        'interior_rooms' => 'json',
     ];
 }
