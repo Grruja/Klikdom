@@ -10,7 +10,7 @@ class ListingInfo extends Model
     protected $table = 'listings_info';
 
     protected $fillable = [
-        'property_id',
+        'listing_id',
         'property_number',
         'construction_material',
         'heating',

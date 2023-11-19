@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('listings_info', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('property_id');
-            $table->string('street');
+            $table->unsignedBigInteger('listing_id');
             $table->string('property_number');
-            $table->string('heating');
-            $table->string('rooms_number');
-            $table->float('storey_number', 3, 1);
+            $table->string('heating', 30);
+            $table->json('interior_rooms');
+            $table->float('rooms_number', 2, 1);
             $table->string('floor', 30);
-            $table->string('total_floors', 20);
+            $table->integer('total_floors');
+            $table->integer('storey_number');
             $table->timestamps();
 
-            $table->foreign('property_id')->references('id')->on('listings');
+            $table->foreign('listing_id')->references('id')->on('listings');
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('listing_infos');
+        Schema::dropIfExists('listings_info');
     }
 };
