@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('property', 20);
             $table->string('property_type', 30);
             $table->string('location');
+            $table->string('street');
             $table->decimal('price', 10, 2);
             $table->decimal('property_area', 8, 2);
             $table->decimal('land_area', 8, 2);

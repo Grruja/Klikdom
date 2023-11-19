@@ -15,6 +15,7 @@ class Listing extends Model
         'property',
         'property_type',
         'location',
+        'street',
         'price',
         'property_area',
         'land_area',
