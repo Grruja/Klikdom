@@ -55,22 +55,22 @@
                     <div class="form-floating col-lg-3 col-md-4">
                         <select name="rooms_number" required id="roomsNumber" class="form-select">
                             <option value="" disabled selected hidden></option>
-                            <option value="garsonjera">Garsonjera</option>
-                            <option value="1 soba">Jednosoban stan</option>
-                            <option value="1.5 soba">Jednoiposoban stan</option>
-                            <option value="2 sobe">Dvosoban stan</option>
-                            <option value="2.5 sobe">Dvoiposoban stan</option>
-                            <option value="3 sobe">Trosoban stan</option>
-                            <option value="3.5 sobe">Troiposoban stan</option>
-                            <option value="4 sobe">Četvorosoban stan</option>
-                            <option value="4.5 sobe">Četvoroiposoban stan</option>
-                            <option value="5 soba">Petosoban stan</option>
-                            <option value="5.5 soba">Petoiposoban stan</option>
-                            <option value="6 soba">Šestosoban stan</option>
-                            <option value="6.5 soba">Šestoiposoban stan</option>
-                            <option value="7 soba">Sedmosoban stan</option>
-                            <option value="7.5 soba">Sedmoiposoban stan</option>
-                            <option value="8 soba">Osmosoban stan</option>
+                            <option value="0.5">Garsonjera</option>
+                            <option value="1">Jednosoban stan</option>
+                            <option value="1.5">Jednoiposoban stan</option>
+                            <option value="2">Dvosoban stan</option>
+                            <option value="2.5">Dvoiposoban stan</option>
+                            <option value="3">Trosoban stan</option>
+                            <option value="3.5">Troiposoban stan</option>
+                            <option value="4">Četvorosoban stan</option>
+                            <option value="4.5">Četvoroiposoban stan</option>
+                            <option value="5">Petosoban stan</option>
+                            <option value="5.5">Petoiposoban stan</option>
+                            <option value="6">Šestosoban stan</option>
+                            <option value="6.5">Šestoiposoban stan</option>
+                            <option value="7">Sedmosoban stan</option>
+                            <option value="7.5">Sedmoiposoban stan</option>
+                            <option value="8">Osmosoban stan</option>
                         </select>
                         <label for="roomsNumber" class="text-secondary ms-2">Broj soba *</label>
                         <p class="text-danger clientError" id="errorRoomsNumber"></p>
@@ -116,7 +116,7 @@
                     <div class="form-floating col-lg-3 col-md-4">
                         <select name="heating" required id="heating" class="form-select">
                             <option value="" disabled selected hidden></option>
-                            <option value="nema grejanje">Nema grejanje</option>
+                            <option value="nema">Nema grejanje</option>
                             <option value="centralno">Centralno</option>
                             <option value="etažno">Etažno</option>
                             <option value="struja">Struja</option>
@@ -155,7 +155,7 @@
                             <option value="prizemlje">Prizemlje</option>
                             <option value="visoko prizemlje">Visoko prizemlje</option>
                             @for ($i = 1; $i < 30; $i++)
-                                <option value="{{ $i }}. sprat">{{ $i }}. sprat</option>
+                                <option value="{{ $i }}">{{ $i }}. sprat</option>
                             @endfor
                             <option value="potkrovlje">Potkrovlje</option>
                         </select>
@@ -165,12 +165,12 @@
                     <div class="form-floating col-lg-3 col-md-4">
                         <select name="total_floors" required id="totalFloors" class="form-select">
                             <option value="" disabled selected hidden></option>
-                            <option value="1 sprat">1 sprat</option>
-                            <option value="2 sprata">2 sprata</option>
-                            <option value="3 sprata">3 sprata</option>
-                            <option value="4 sprata">4 sprata</option>
+                            <option value="1">1 sprat</option>
+                            <option value="2">2 sprata</option>
+                            <option value="3">3 sprata</option>
+                            <option value="4">4 sprata</option>
                             @for ($i = 5; $i < 30; $i++)
-                                <option value="{{ $i }} spratova">{{ $i }} spratova</option>
+                                <option value="{{ $i }}">{{ $i }} spratova</option>
                             @endfor
                         </select>
                         <label for="totalFloors" class="text-secondary ms-2">Ukupno spratova *</label>
@@ -179,10 +179,10 @@
                     <div class="form-floating col-lg-3 col-md-4">
                         <select name="elevator" id="elevator" class="form-select">
                             <option value="" disabled selected hidden></option>
-                            <option value="nema lift">Nema</option>
-                            <option value="ima lift (1)">1</option>
-                            <option value="ima lift (2)">2</option>
-                            <option value="ima lift (3+)">3+</option>
+                            <option value="nema">Nema</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3+">3+</option>
                         </select>
                         <label for="elevator" class="text-secondary ms-2">Lift</label>
                     </div>
@@ -291,8 +291,8 @@
                     <div class="form-floating col-lg-3 col-md-4">
                         <select name="payment_schedule" required id="paymentSchedule" class="form-select">
                             <option value="" disabled selected hidden></option>
-                            <option value="Dan">Dan</option>
-                            <option value="mesec">Mesec</option>
+                            <option value="dan">Dan</option>
+                            <option value="mesec dana">Mesec</option>
                             <option value="3 meseca">3 meseca</option>
                             <option value="6 meseci">6 meseci</option>
                             <option value="godinu dana">Godinu dana</option>
@@ -324,20 +324,20 @@
                         <div class="form-floating col-lg-3 col-md-4">
                             <select name="infrastructure[]" id="loggia" class="form-select">
                                 <option value="" disabled selected hidden></option>
-                                <option value="nema lođu">Nema</option>
-                                <option value="lođa (1)">1</option>
-                                <option value="lođe (2)">2</option>
-                                <option value="lođe (3+)">3+</option>
+                                <option value="nema">Nema</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3+">3+</option>
                             </select>
                             <label for="loggia" class="text-secondary ms-2">Lođa</label>
                         </div>
                         <div class="form-floating col-lg-3 col-md-4">
                             <select name="infrastructure[]" id="balcony" class="form-select">
                                 <option value="" disabled selected hidden></option>
-                                <option value="nema terasu">Nema</option>
-                                <option value="terasa (1)">1</option>
-                                <option value="terase (2)">2</option>
-                                <option value="terase (3+)">3+</option>
+                                <option value="nema">Nema</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3+">3+</option>
                             </select>
                             <label for="balcony" class="text-secondary ms-2">Terasa</label>
                         </div>
@@ -347,20 +347,20 @@
                         <div class="form-floating col-lg-3 col-md-4">
                             <select name="interior_rooms[]" id="bathroom" class="form-select">
                                 <option value="" disabled selected hidden></option>
-                                <option value="nema kupatilo">Nema</option>
-                                <option value="kupatilo (1)">1</option>
-                                <option value="kupatila (2)">2</option>
-                                <option value="kupatila (3+)">3+</option>
+                                <option value="nema">Nema</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3+">3+</option>
                             </select>
                             <label for="bathroom" class="text-secondary ms-2">Kupatilo</label>
                         </div>
                         <div class="form-floating col-lg-3 col-md-4">
                             <select name="interior_rooms[]" id="toilet" class="form-select">
                                 <option value="" disabled selected hidden></option>
-                                <option value="nema toalet">Nema</option>
-                                <option value="toalet (1)">1</option>
-                                <option value="toaleta (2)">2</option>
-                                <option value="toaleta (3+)">3+</option>
+                                <option value="nema">Nema</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3+">3+</option>
                             </select>
                             <label for="toilet" class="text-secondary ms-2">Toalet</label>
                         </div>
@@ -487,7 +487,7 @@
                                 <option value="" disabled selected hidden></option>
                                 <option value="ne znam">Ne znam</option>
                                 @for ($i = 1900; $i <= date("Y"); $i+=10)
-                                    <option value="{{ $i }}.">{{ $i }}.</option>
+                                    <option value="{{ $i }}">{{ $i }}.</option>
                                 @endfor
                             </select>
                             <label for="yearBuilt" class="text-secondary ms-2">Godina izgradnje</label>

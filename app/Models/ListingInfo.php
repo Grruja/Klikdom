@@ -11,7 +11,6 @@ class ListingInfo extends Model
 
     protected $fillable = [
         'property_id',
-        'street',
         'property_number',
         'construction_material',
         'heating',
