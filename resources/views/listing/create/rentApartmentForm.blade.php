@@ -322,7 +322,7 @@
 
                     <div class="row g-3 mt-1">
                         <div class="form-floating col-lg-3 col-md-4">
-                            <select name="infrastructure[]" id="loggia" class="form-select">
+                            <select name="loggia" id="loggia" class="form-select">
                                 <option value="" disabled selected hidden></option>
                                 <option value="nema">Nema</option>
                                 <option value="1">1</option>
@@ -332,7 +332,7 @@
                             <label for="loggia" class="text-secondary ms-2">Lođa</label>
                         </div>
                         <div class="form-floating col-lg-3 col-md-4">
-                            <select name="infrastructure[]" id="balcony" class="form-select">
+                            <select name="balcony" id="balcony" class="form-select">
                                 <option value="" disabled selected hidden></option>
                                 <option value="nema">Nema</option>
                                 <option value="1">1</option>
@@ -599,55 +599,55 @@
 
                     <div class="row g-3 mt-1 p-2">
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="prilaz za invalide" id="invalids">
+                            <input type="checkbox" name="invalids" class="form-check-input me-3" value="prilaz za invalide" id="invalids">
                             <label class="form-check-label" for="invalids">
                                 Prilaz za invalide
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="dvorište" id="yard">
+                            <input type="checkbox" name="yard" class="form-check-input me-3" value="dvorište" id="yard">
                             <label class="form-check-label" for="yard">
                                 Dvorište
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="sauna" id="sauna">
+                            <input type="checkbox" name="sauna" class="form-check-input me-3" value="sauna" id="sauna">
                             <label class="form-check-label" for="sauna">
                                 Sauna
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="fitness" id="fitness">
+                            <input type="checkbox" name="fitness" class="form-check-input me-3" value="fitness" id="fitness">
                             <label class="form-check-label" for="fitness">
                                 Fitness
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="ventilacija" id="ventilation">
+                            <input type="checkbox" name="ventilation" class="form-check-input me-3" value="ventilacija" id="ventilation">
                             <label class="form-check-label" for="ventilation">
                                 Ventilacija
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="centralna klima" id="centralAc">
+                            <input type="checkbox" name="central_ac" class="form-check-input me-3" value="centralna klima" id="centralAc">
                             <label class="form-check-label" for="centralAc">
                                 Centralna klima
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="video nadzor" id="surveillance">
+                            <input type="checkbox" name="surveillance" class="form-check-input me-3" value="video nadzor" id="surveillance">
                             <label class="form-check-label" for="surveillance">
                                 Video nadzor
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="alarm" id="alarm">
+                            <input type="checkbox" name="alarm" class="form-check-input me-3" value="alarm" id="alarm">
                             <label class="form-check-label" for="alarm">
                                 Alarm
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="infrastructure[]" class="form-check-input me-3" value="recepcija" id="reception">
+                            <input type="checkbox" name="reception" class="form-check-input me-3" value="recepcija" id="reception">
                             <label class="form-check-label" for="reception">
                                 Recepcija
                             </label>
