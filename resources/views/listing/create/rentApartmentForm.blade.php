@@ -345,7 +345,7 @@
 
                     <div class="row g-3 mt-1">
                         <div class="form-floating col-lg-3 col-md-4">
-                            <select name="bathroom" id="bathroom" class="form-select">
+                            <select name="room_name[]" id="bathroom" class="form-select">
                                 <option value="" disabled selected hidden></option>
                                 <option value="0">Nema</option>
                                 <option value="1">1</option>
@@ -355,7 +355,7 @@
                             <label for="bathroom" class="text-secondary ms-2">Kupatilo</label>
                         </div>
                         <div class="form-floating col-lg-3 col-md-4">
-                            <select name="toilet" id="toilet" class="form-select">
+                            <select name="room_name[]" id="toilet" class="form-select">
                                 <option value="" disabled selected hidden></option>
                                 <option value="0">Nema</option>
                                 <option value="1">1</option>
@@ -368,25 +368,25 @@
 
                     <div class="row g-3 mt-1 p-2">
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="kitchen" class="form-check-input me-3" value="kuhinja" id="kitchen">
+                            <input type="checkbox" name="room_name[]" class="form-check-input me-3" value="kitchen" id="kitchen">
                             <label class="form-check-label" for="kitchen">
                                 Kuhinja
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="storage" class="form-check-input me-3" value="ostava" id="storage">
+                            <input type="checkbox" name="room_name[]" class="form-check-input me-3" value="storage" id="storage">
                             <label class="form-check-label" for="storage">
                                 Ostava
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="basement" class="form-check-input me-3" value="podrum" id="basement">
+                            <input type="checkbox" name="room_name[]" class="form-check-input me-3" value="basement" id="basement">
                             <label class="form-check-label" for="basement">
                                 Podrum
                             </label>
                         </div>
                         <div class="form-check col-lg-3 col-sm-4 d-flex align-items-center">
-                            <input type="checkbox" name="loft" class="form-check-input me-3" value="tavan" id="loft">
+                            <input type="checkbox" name="room_name[]" class="form-check-input me-3" value="loft" id="loft">
                             <label class="form-check-label" for="loft">
                                 Tavan
                             </label>

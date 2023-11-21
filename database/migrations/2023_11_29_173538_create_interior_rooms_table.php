@@ -11,19 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('listing_info', function (Blueprint $table) {
+        Schema::create('interior_rooms', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->string('property_number');
-            $table->string('construction_material', 30);
-            $table->string('heating', 40);
-            $table->float('rooms_number', 2, 1);
-            $table->string('floor', 30);
-            $table->integer('total_floors');
-            $table->integer('storey_number');
-            $table->timestamps();
+            $table->string('room_name', 30);
 
             $table->foreign('listing_id')->references('id')->on('listings');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('listing_info');
+        Schema::dropIfExists('interior_rooms');
     }
 };

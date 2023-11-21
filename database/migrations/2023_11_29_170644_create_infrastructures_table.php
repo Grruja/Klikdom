@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('infrastructures', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->string('infrastructure_name');
+            $table->string('infrastructure_name', 40);
 
             $table->foreign('listing_id')->references('id')->on('listings');
             $table->timestamps();
