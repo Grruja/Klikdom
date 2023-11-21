@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateListingRequest;
 use App\Http\Requests\DisplayFormRequest;
+use App\Models\Listing;
+use App\Models\ListingInfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class ListingController extends Controller
