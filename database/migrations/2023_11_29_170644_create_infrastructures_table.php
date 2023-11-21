@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('amenities', function (Blueprint $table) {
+        Schema::create('infrastructures', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->unsignedTinyInteger('elevator');
-            $table->json('parking');
-            $table->json('garage');
-            $table->string('water_supply', 20);
-            $table->string('internet_type', 20);
-            $table->boolean('smoking_allowed');
-            $table->boolean('pets_allowed');
-            $table->json('additional');
+            $table->string('infrastructure_name');
 
             $table->foreign('listing_id')->references('id')->on('listings');
             $table->timestamps();
@@ -33,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('amenities');
+        Schema::dropIfExists('infrastructures');
     }
 };

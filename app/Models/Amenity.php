@@ -23,7 +23,6 @@ class Amenity extends Model
     ];
 
     protected $casts = [
-        'infrastructure' => 'json',
         'parking' => 'json',
         'garage' => 'json',
         'additional' => 'json',
