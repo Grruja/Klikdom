@@ -25,24 +25,24 @@ class CreateListingRequest extends FormRequest
         $transaction = Session::get('listing_type')['transaction'];
         $property = Session::get('listing_type')['property'];
 
-        if ($transaction === 'prodaja' && $property === 'kuća') {
+        if ($transaction === 'sell' && $property === 'house') {
             return [
 
             ];
         }
-        else if ($transaction === 'prodaja' && $property === 'stan') {
+        else if ($transaction === 'sell' && $property === 'apartment') {
             return [
 
             ];
         }
-        else if ($transaction === 'izdavanje' && $property === 'kuća') {
+        else if ($transaction === 'rent' && $property === 'house') {
             return [
 
             ];
         }
         else {
             return [
-                'property_type' => 'required|in:stan u zgradi,stan u kući,apartman,salonac,penthaus,dvorišni stan,dupleks',
+                'property_type' => 'required|in:building apartment,house apartment,apartment,studio,penthouse,courtyard apartment,duplex',
                 'location' => 'required',
                 'street' => 'required|min:3',
                 'property_number' => 'nullable|min:1',
@@ -54,6 +54,7 @@ class CreateListingRequest extends FormRequest
                 'price' => ['required', 'regex:/^(?:0|[1-9]\d*)(?:\.\d+)?$/'],
                 'deposit' => ['nullable', 'regex:/^(?:0|[1-9]\d*)(?:\.\d+)?$/'],
                 'payment_schedule' => 'required',
+                'available_now' => 'nullable|in:1',
                 'garage_space' => ['nullable', 'regex:/^[1-9]\d*(\.\d+)?$/'],
                 'description' => 'nullable|min:5',
                 'images.*' => 'nullable|image|mimes:jpg,png,jpeg|max:5120',

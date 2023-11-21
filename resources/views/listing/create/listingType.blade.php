@@ -6,19 +6,19 @@
             <div class="d-flex flex-md-row flex-column">
                 <fieldset style="margin-right: 6rem" class="mb-md-0 mb-5">
                     <legend class="fs-5 mb-4 fw-semibold">Izaberite transakciju:</legend>
-                    <input type="radio" name="transaction" id="sell" value="prodaja" class="mb-3" required>
+                    <input type="radio" name="transaction" id="sell" value="sell" class="mb-3" required>
                     <lable for="sell">PRODAJA</lable>
                     <br>
-                    <input type="radio" name="transaction" id="rent" value="izdavanje" required>
+                    <input type="radio" name="transaction" id="rent" value="rent" required>
                     <lable for="rent">IZDAVANJE</lable>
                 </fieldset>
 
                 <fieldset>
                     <legend class="fs-5 mb-4 fw-semibold">Izaberite tip nekretnine:</legend>
-                    <input type="radio" name="property" id="house" value="kuća" class="mb-3" required>
+                    <input type="radio" name="property" id="house" value="house" class="mb-3" required>
                     <lable for="house">KUĆA</lable>
                     <br>
-                    <input type="radio" name="property" id="apartment" value="stan" required>
+                    <input type="radio" name="property" id="apartment" value="apartment" required>
                     <lable for="apartment">STAN</lable>
                 </fieldset>
             </div>

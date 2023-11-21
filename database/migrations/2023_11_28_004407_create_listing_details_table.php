@@ -16,11 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('listing_id');
             $table->string('furnishings', 20);
             $table->string('condition', 30);
-            $table->integer('year_built');
-            $table->string('registered', 40);
+            $table->unsignedTinyInteger('year_built');
+            $table->string('registered', 20);
             $table->decimal('deposit', 10, 2);
-            $table->string('payment_schedule', 20);
-            $table->string('available_from', 15);
+            $table->integer('payment_schedule');
+            $table->date('available_from');
+            $table->integer('available_now');
             $table->text('description');
 
             $table->foreign('listing_id')->references('id')->on('listings');

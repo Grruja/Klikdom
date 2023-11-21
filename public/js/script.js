@@ -189,14 +189,16 @@ function displayCheckboxValue(text, checkboxes) {
     const boxesChecked = [];
     checkboxes.forEach((box) => {
         box.addEventListener('change', () => {
+            const label = box.nextElementSibling;
+
             if (box.checked) {
                 const span = document.createElement('span');
-                span.textContent = (boxesChecked.length < 1) ? `${box.value}` : `, ${box.value}`;
+                span.textContent = (boxesChecked.length < 1) ? `${label.textContent}` : `, ${label.textContent}`;
                 text.appendChild(span);
                 boxesChecked.push(span);
             }
             else {
-                const index = boxesChecked.findIndex((span) => span.textContent.includes(box.value));
+                const index = boxesChecked.findIndex((span) => span.textContent.includes(label.textContent));
                 if (index !== -1) {
                     boxesChecked[index].remove();
                     boxesChecked.splice(index, 1);

@@ -18,6 +18,7 @@ class ListingDetails extends Model
         'deposit',
         'payment_schedule',
         'available_from',
+        'available_now',
         'description',
     ];
 }

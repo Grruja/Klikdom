@@ -22,8 +22,8 @@ class DisplayFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'transaction' => 'required|in:prodaja,izdavanje',
-            'property' => 'required|in:kuća,stan',
+            'transaction' => 'required|in:sell,rent',
+            'property' => 'required|in:house,apartment',
         ];
     }
 }

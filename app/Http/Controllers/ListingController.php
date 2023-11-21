@@ -21,13 +21,13 @@ class ListingController extends Controller
             'property' => $property,
         ]);
 
-        if ($transaction === 'prodaja' && $property === 'kuća') {
+        if ($transaction === 'sell' && $property === 'house') {
             return view('listing.create.sellHouseForm');
         }
-        else if ($transaction === 'prodaja' && $property === 'stan') {
+        else if ($transaction === 'sell' && $property === 'apartment') {
             return view('listing.create.sellApartmentForm');
         }
-        else if ($transaction === 'izdavanje' && $property === 'kuća') {
+        else if ($transaction === 'rent' && $property === 'house') {
             return view('listing.create.rentHouseForm');
         }
         else {

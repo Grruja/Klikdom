@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('amenities', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->string('elevator', 10);
+            $table->unsignedTinyInteger('elevator');
             $table->json('infrastructure');
             $table->json('parking');
             $table->json('garage');
             $table->string('water_supply', 20);
             $table->string('internet_type', 20);
-            $table->string('smoking_allowed', 10);
-            $table->string('pets_allowed', 10);
+            $table->boolean('smoking_allowed');
+            $table->boolean('pets_allowed');
             $table->json('additional');
 
             $table->foreign('listing_id')->references('id')->on('listings');
