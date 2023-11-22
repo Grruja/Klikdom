@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateListingRequest;
 use App\Http\Requests\DisplayFormRequest;
-use App\Models\Amenity;
-use App\Models\Equipment;
-use App\Models\Infrastructure;
-use App\Models\InteriorRooms;
-use App\Models\Listing;
-use App\Models\ListingDetails;
-use App\Models\ListingInfo;
-use Illuminate\Support\Facades\Auth;
+use App\Repository\ListingRepo;
 use Illuminate\Support\Facades\Session;
 
 class ListingController extends Controller
 {
+    private $listingRepo;
+
+    public function __construct()
+    {
+        $this->listingRepo = new ListingRepo();
+    }
+
     public function displayForm(DisplayFormRequest $request) {
         $transaction = $request->get('transaction');
         $property = $request->get('property');
@@ -40,6 +40,6 @@ class ListingController extends Controller
     }
 
     public function createListing(CreateListingRequest $request) {
-        dd($request->all());
+        $this->listingRepo->createListing($request);
     }
 }
