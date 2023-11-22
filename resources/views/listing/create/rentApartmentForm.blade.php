@@ -5,6 +5,12 @@
         <form action="{{ route('listing.create') }}" method="POST" class="sectionMargin" enctype="multipart/form-data">
             {{ csrf_field() }}
 
+            @if ($errors->any())
+                @foreach($errors->all() as $error)
+                    <p class="text-danger">{{ $error }}</p>
+                @endforeach
+            @endif
+
             <fieldset class="bg-white shadow rounded-2 p-4">
                 <legend class="fw-bold fs-3">Stan za izdavanje</legend>
 
@@ -324,20 +330,20 @@
                         <div class="form-floating col-lg-3 col-md-4">
                             <select name="infrastructure_name[]" id="loggia" class="form-select">
                                 <option value="" disabled selected hidden></option>
-                                <option value="0">Nema</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3+</option>
+                                <option value="no loggia">Nema</option>
+                                <option value="loggia 1">1</option>
+                                <option value="loggia 2">2</option>
+                                <option value="loggia 3+">3+</option>
                             </select>
                             <label for="loggia" class="text-secondary ms-2">Lođa</label>
                         </div>
                         <div class="form-floating col-lg-3 col-md-4">
                             <select name="infrastructure_name[]" id="balcony" class="form-select">
                                 <option value="" disabled selected hidden></option>
-                                <option value="0">Nema</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3+</option>
+                                <option value="no balcony">Nema</option>
+                                <option value="balcony 1">1</option>
+                                <option value="balcony 2">2</option>
+                                <option value="balcony 3+">3+</option>
                             </select>
                             <label for="balcony" class="text-secondary ms-2">Terasa</label>
                         </div>
@@ -347,20 +353,20 @@
                         <div class="form-floating col-lg-3 col-md-4">
                             <select name="room_name[]" id="bathroom" class="form-select">
                                 <option value="" disabled selected hidden></option>
-                                <option value="0">Nema</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3+</option>
+                                <option value="no bathroom">Nema</option>
+                                <option value="bathroom 1">1</option>
+                                <option value="bathroom 2">2</option>
+                                <option value="bathroom 3+">3+</option>
                             </select>
                             <label for="bathroom" class="text-secondary ms-2">Kupatilo</label>
                         </div>
                         <div class="form-floating col-lg-3 col-md-4">
                             <select name="room_name[]" id="toilet" class="form-select">
                                 <option value="" disabled selected hidden></option>
-                                <option value="0">Nema</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3+</option>
+                                <option value="no toilet">Nema</option>
+                                <option value="toilet 1">1</option>
+                                <option value="toilet 2">2</option>
+                                <option value="toilet 3+">3+</option>
                             </select>
                             <label for="toilet" class="text-secondary ms-2">Toalet</label>
                         </div>

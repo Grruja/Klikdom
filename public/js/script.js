@@ -291,17 +291,17 @@ function displayImages() {
 // ===== VALIDATION
 const fields = [
     { input: 'propertyType', text: 'tip nekretnine', error: 'errorPropertyType', required: true, },
-    { input: 'street', text: 'ulica', error: 'errorStreet', minLength: 3, required: true, },
-    { input: 'propertyNumber', text: 'broj', error: 'errorPropertyNumber', minLength: 1, required: false, },
+    { input: 'street', text: 'ulica', error: 'errorStreet', minLength: 3, maxLength: 255, required: true, },
+    { input: 'propertyNumber', text: 'broj', error: 'errorPropertyNumber', minLength: 1, maxLength: 30, required: false, },
     { input: 'roomsNumber', text: 'broj soba', error: 'errorRoomsNumber', required: true, },
-    { input: 'propertyArea', text: 'površina', error: 'errorPropertyArea', regex: /^[1-9]\d*(\.\d+)?$/, minLength: 1, required: true, },
+    { input: 'propertyArea', text: 'površina', error: 'errorPropertyArea', regex: /^[1-9]\d*$/, required: true, },
     { input: 'heating', text: 'grejanje', error: 'errorHeating', required: true, },
     { input: 'floor', text: 'sprat', error: 'errorFloor', required: true, },
     { input: 'totalFloors', text: 'ukupno spratova', error: 'errorTotalFloors', required: true, },
-    { input: 'price', text: 'cena', error: 'errorPrice', regex: /^(?:0|[1-9]\d*)(?:\.\d+)?$/, required: true, },
-    { input: 'deposit', text: 'depozit', error: 'errorDeposit', regex: /^(?:0|[1-9]\d*)(?:\.\d+)?$/, required: false, },
+    { input: 'price', text: 'cena', error: 'errorPrice', regex: /^[1-9]\d*$/, required: true, },
+    { input: 'deposit', text: 'depozit', error: 'errorDeposit', regex: /^[1-9]\d*$/, required: false, },
     { input: 'paymentSchedule', text: 'dinamika plaćanja', error: 'errorPaymentSchedule', required: true, },
-    { input: 'garageSpace', text: 'broj mesta u garaži', error: 'errorGarageSpace', regex: /^[1-9]\d*(\.\d+)?$/, required: false, },
+    { input: 'garageSpace', text: 'broj mesta u garaži', error: 'errorGarageSpace', regex: /^[1-9]\d*$/, required: false, },
     { input: 'description', text: 'opis', error: 'errorDescription', minLength: 5, required: false, },
 
     { input: 'locationSearch', required: true, },
@@ -330,8 +330,8 @@ function validateField(field) {
     else if (field.regex && !field.regex.test(inputValue) && inputValue.length > 0) {
         errorElement.textContent = `Polje ${field.text} je uneto u nepravilnom formatu.`;
     }
-    else if (inputValue.length > 0 && inputValue.length < field.minLength) {
-        errorElement.textContent = `Polje ${field.text} mora sadržati barem ${field.minLength} karaktera.`;
+    else if (inputValue.length > 0 && inputValue.length < field.minLength || inputValue.length > field.maxLength) {
+        errorElement.textContent = `Polje ${field.text} mora sadržati minimalno ${field.minLength} do ${field.maxLength} karaktera.`;
     }
     else {
         errorElement.textContent = '';

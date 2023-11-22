@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('listing_info', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->string('property_number')->nullable();
+            $table->string('property_number', 30)->nullable();
             $table->string('construction_material', 30)->nullable();
             $table->string('heating', 40);
             $table->float('rooms_number', 2, 1);

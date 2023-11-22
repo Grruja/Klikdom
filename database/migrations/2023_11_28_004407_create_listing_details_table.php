@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('condition', 30)->nullable();
             $table->unsignedInteger('year_built')->nullable();
             $table->string('registered', 20)->nullable();
-            $table->decimal('deposit', 10, 2)->nullable();
+            $table->integer('deposit')->nullable();
             $table->integer('payment_schedule');
             $table->date('available_from')->nullable();
             $table->integer('available_now')->nullable();
