@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateListingRequest;
 use App\Http\Requests\DisplayFormRequest;
+use App\Repository\ListingInfoRepo;
 use App\Repository\ListingRepo;
 use Illuminate\Support\Facades\Session;
 
 class ListingController extends Controller
 {
     private $listingRepo;
+    private $listingInfoRepo;
 
     public function __construct()
     {
         $this->listingRepo = new ListingRepo();
+        $this->listingInfoRepo = new ListingInfoRepo();
     }
 
     public function displayForm(DisplayFormRequest $request) {
@@ -40,6 +43,7 @@ class ListingController extends Controller
     }
 
     public function createListing(CreateListingRequest $request) {
-        $this->listingRepo->createListing($request);
+        $listing = $this->listingRepo->createListing($request);
+        $this->listingInfoRepo->createListingInfo($request, $listing->id);
     }
 }

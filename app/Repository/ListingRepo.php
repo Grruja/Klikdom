@@ -17,7 +17,7 @@ class ListingRepo
 
     public function createListing($request)
     {
-        $this->listingModel->create([
+        return $this->listingModel->create([
             'user_id' => Auth::id(),
             'transaction' => Session::get('listing_type.transaction'),
             'property' => Session::get('listing_type.property'),
