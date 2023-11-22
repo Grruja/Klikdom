@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Infrastructure extends Model
 {
-    protected $table = 'infrastructure';
+    protected $table = 'infrastructures';
 
     protected $fillable = [
         'listing_id',

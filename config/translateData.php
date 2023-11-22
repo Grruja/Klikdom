@@ -132,16 +132,16 @@ return [
 
     // INFRASTRUCTURE
     'loggia' => [
-        'nema lođu',
-        'lođa',
-        'lođe (2)',
-        'lođe (3+)',
+        'no loggia' => 'nema lođu',
+        'loggia 1' => 'lođa',
+        'loggia 2' => 'lođe (2)',
+        'loggia 3+' => 'lođe (3+)',
     ],
     'balcony' => [
-        'nema terasu',
-        'terasa',
-        'terase (2)',
-        'terase (3+)',
+        'no loggia' => 'nema terasu',
+        'balcony 1' => 'terasa',
+        'balcony 2' =>'terase (2)',
+        'balcony 3+' => 'terase (3+)',
     ],
     'disabled access' => 'prilaz za invalide',
     'courtyard' => 'dvorište',
@@ -155,16 +155,16 @@ return [
 
     // INTERIOR ROOMS
     'bathroom' => [
-        'nema kupatilo',
-        'kupatilo',
-        'kupatila (2)',
-        'kupatila (3+)',
+        'no bathroom' => 'nema kupatilo',
+        'bathroom 1' => 'kupatilo',
+        'bathroom 2' => 'kupatila (2)',
+        'bathroom 3+' => 'kupatila (3+)',
     ],
     'toilet' => [
-        'nema toalet',
-        'toalet',
-        'toaleta (2)',
-        'toaleta (3+)',
+        'no toilet' => 'nema toalet',
+        'toilet 1' => 'toalet',
+        'toilet 2' => 'toaleta (2)',
+        'toilet 3+' => 'toaleta (3+)',
     ],
     'kitchen' => 'kuhinja',
     'storage' => 'ostava',

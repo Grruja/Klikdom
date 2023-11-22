@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('listing_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->string('furnishings', 20);
-            $table->string('condition', 30);
-            $table->unsignedTinyInteger('year_built');
-            $table->string('registered', 20);
-            $table->decimal('deposit', 10, 2);
+            $table->string('furnishings', 20)->nullable();
+            $table->string('condition', 30)->nullable();
+            $table->unsignedInteger('year_built')->nullable();
+            $table->string('registered', 20)->nullable();
+            $table->decimal('deposit', 10, 2)->nullable();
             $table->integer('payment_schedule');
-            $table->date('available_from');
-            $table->integer('available_now');
-            $table->text('description');
+            $table->date('available_from')->nullable();
+            $table->integer('available_now')->nullable();
+            $table->text('description')->nullable();
 
             $table->foreign('listing_id')->references('id')->on('listings');
             $table->timestamps();

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('listing_images', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->string('image');
+            $table->string('image')->nullable();
 
             $table->foreign('listing_id')->references('id')->on('listings');
             $table->timestamps();

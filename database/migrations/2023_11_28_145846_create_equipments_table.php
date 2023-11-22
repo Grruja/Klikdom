@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('equipments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->string('equipment_name', 40);
+            $table->string('equipment_name', 40)->nullable();
 
             $table->foreign('listing_id')->references('id')->on('listings');
             $table->timestamps();

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('street');
             $table->decimal('price', 10, 2);
             $table->decimal('property_area', 8, 2);
-            $table->decimal('land_area', 8, 2);
+            $table->decimal('land_area', 8, 2)->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

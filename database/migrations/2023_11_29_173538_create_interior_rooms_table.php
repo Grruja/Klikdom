@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('interior_rooms', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->string('room_name', 30);
+            $table->string('room_name', 30)->nullable();
 
             $table->foreign('listing_id')->references('id')->on('listings');
             $table->timestamps();

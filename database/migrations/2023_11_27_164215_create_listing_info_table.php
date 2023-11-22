@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('listing_info', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->string('property_number');
-            $table->string('construction_material', 30);
+            $table->string('property_number')->nullable();
+            $table->string('construction_material', 30)->nullable();
             $table->string('heating', 40);
             $table->float('rooms_number', 2, 1);
             $table->string('floor', 30);
             $table->integer('total_floors');
-            $table->integer('storey_number');
+            $table->integer('storeys_number')->nullable();
             $table->timestamps();
 
             $table->foreign('listing_id')->references('id')->on('listings');
