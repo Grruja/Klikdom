@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedTinyInteger('elevator')->nullable();
             $table->json('parking')->nullable();
             $table->json('garage')->nullable();
-            $table->string('water_supply', 20)->nullable();
             $table->string('internet_type', 20)->nullable();
             $table->boolean('smoking_allowed')->nullable();
             $table->boolean('pets_allowed')->nullable();

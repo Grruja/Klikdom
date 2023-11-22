@@ -11,12 +11,13 @@ class ListingInfo extends Model
 
     protected $fillable = [
         'listing_id',
-        'property_number',
-        'construction_material',
-        'heating',
+        'payment_schedule',
+        'registered',
+        'deposit',
         'rooms_number',
         'floor',
         'total_floors',
         'storeys_number',
+        'land_area',
     ];
 }

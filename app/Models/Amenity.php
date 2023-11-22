@@ -12,10 +12,8 @@ class Amenity extends Model
     protected $fillable = [
         'listing_id',
         'elevator',
-        'infrastructure',
         'parking',
         'garage',
-        'water_supply',
         'internet_type',
         'smoking_allowed',
         'pets_allowed',

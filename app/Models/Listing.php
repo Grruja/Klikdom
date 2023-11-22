@@ -18,6 +18,6 @@ class Listing extends Model
         'street',
         'price',
         'property_area',
-        'land_area',
+        'heating',
     ];
 }

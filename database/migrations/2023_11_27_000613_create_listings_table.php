@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('street');
             $table->integer('price');
             $table->integer('property_area');
-            $table->integer('land_area')->nullable();
+            $table->string('heating', 40);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

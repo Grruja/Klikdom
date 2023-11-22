@@ -11,12 +11,12 @@ class ListingDetails extends Model
 
     protected $fillable = [
         'listing_id',
-        'furnishings',
-        'condition',
+        'construction_material',
         'year_built',
-        'registered',
-        'deposit',
-        'payment_schedule',
+        'property_number',
+        'condition',
+        'water_supply'.
+        'furnishings',
         'available_from',
         'available_now',
         'description',

@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('listing_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->string('furnishings', 20)->nullable();
-            $table->string('condition', 30)->nullable();
+            $table->string('construction_material', 30)->nullable();
             $table->unsignedInteger('year_built')->nullable();
-            $table->string('registered', 20)->nullable();
-            $table->integer('deposit')->nullable();
-            $table->integer('payment_schedule');
+            $table->string('property_number', 30)->nullable();
+            $table->string('condition', 30)->nullable();
+            $table->string('water_supply', 20)->nullable();
+            $table->string('furnishings', 20)->nullable();
             $table->date('available_from')->nullable();
             $table->integer('available_now')->nullable();
             $table->text('description')->nullable();
