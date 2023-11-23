@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateListingRequest;
 use App\Http\Requests\DisplayFormRequest;
 use App\Repository\AmenityRepo;
+use App\Repository\InfrastructureRepo;
 use App\Repository\ListingDetailsRepo;
 use App\Repository\ListingInfoRepo;
 use App\Repository\ListingRepo;
@@ -16,6 +17,7 @@ class ListingController extends Controller
     private $listingInfoRepo;
     private $listingDetailsRepo;
     private $amenityRepo;
+    private $infrastructureRepo;
 
     public function __construct()
     {
@@ -23,6 +25,7 @@ class ListingController extends Controller
         $this->listingInfoRepo = new ListingInfoRepo();
         $this->listingDetailsRepo = new ListingDetailsRepo();
         $this->amenityRepo = new AmenityRepo();
+        $this->infrastructureRepo = new InfrastructureRepo();
     }
 
     public function displayForm(DisplayFormRequest $request) {
@@ -53,5 +56,6 @@ class ListingController extends Controller
         $this->listingInfoRepo->createListingInfo($request, $listing->id);
         $this->listingDetailsRepo->createListingDetails($request, $listing->id);
         $this->amenityRepo->createAmenity($request, $listing->id);
+        $this->infrastructureRepo->createInfrastructure($request, $listing->id);
     }
 }
