@@ -34,7 +34,6 @@ class AmenityRepo
                 'elevator' => $request->get('elevator'),
                 'parking' => $request->get('parking'),
                 'garage' => $request->get('garage'),
-                'water_supply' => $request->get('water_supply'),
                 'internet_type' => $request->get('internet_type'),
                 'smoking_allowed' => $request->get('smoking_allowed'),
                 'pets_allowed' => $request->get('pets_allowed'),
