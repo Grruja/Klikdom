@@ -287,25 +287,60 @@ function displayImages() {
     imagesContainer.innerHTML = images;
 }
 
+// ===== FLOOR & TOTAL FLOORS VALIDATION
+const floor = document.getElementById('floor');
+const totalFloors = document.getElementById('totalFloors');
+
+if (floor && totalFloors) {
+    const errorFloor = document.getElementById('errorFloor');
+    const errorTotalFloors = document.getElementById('errorTotalFloors');
+
+    floor.addEventListener('input', () => validateFloor(floor, errorFloor, totalFloors, errorTotalFloors));
+    totalFloors.addEventListener('input', () => validateFloor(floor, errorFloor, totalFloors, errorTotalFloors));
+}
+
+function validateFloor(floor, errorFloor, totalFloors, errorTotalFloors) {
+    const floorParsed = parseInt(floor.value);
+    const totalFloorsParsed = parseInt(totalFloors.value);
+
+    if (!isNaN(floorParsed) && floorParsed > totalFloorsParsed) {
+        errorFloor.textContent = `Sprat mora biti manji od ukupnog broja spratova.`;
+        floor.classList.add('is-invalid');
+        errorTotalFloors.textContent = `Ukupan broj spratova mora biti veći od sprata.`;
+        totalFloors.classList.add('is-invalid');
+    }
+    else {
+        errorFloor.textContent = '';
+        floor.classList.remove('is-invalid');
+        errorTotalFloors.textContent = '';
+        totalFloors.classList.remove('is-invalid');
+    }
+}
+
 
 // ===== VALIDATION
 const fields = [
-    { input: 'propertyType', text: 'tip nekretnine', error: 'errorPropertyType', required: true, },
-    { input: 'street', text: 'ulica', error: 'errorStreet', minLength: 3, maxLength: 255, required: true, },
-    { input: 'propertyNumber', text: 'broj', error: 'errorPropertyNumber', minLength: 1, maxLength: 30, required: false, },
-    { input: 'roomsNumber', text: 'broj soba', error: 'errorRoomsNumber', required: true, },
-    { input: 'propertyArea', text: 'površina', error: 'errorPropertyArea', regex: /^[1-9]\d*$/, required: true, },
-    { input: 'heating', text: 'grejanje', error: 'errorHeating', required: true, },
-    { input: 'floor', text: 'sprat', error: 'errorFloor', required: true, },
-    { input: 'totalFloors', text: 'ukupno spratova', error: 'errorTotalFloors', required: true, },
-    { input: 'price', text: 'cena', error: 'errorPrice', regex: /^[1-9]\d*$/, required: true, },
-    { input: 'deposit', text: 'depozit', error: 'errorDeposit', regex: /^[1-9]\d*$/, required: false, },
-    { input: 'paymentSchedule', text: 'dinamika plaćanja', error: 'errorPaymentSchedule', required: true, },
-    { input: 'garageSpace', text: 'broj mesta u garaži', error: 'errorGarageSpace', regex: /^[1-9]\d*$/, required: false, },
-    { input: 'description', text: 'opis', error: 'errorDescription', minLength: 5, required: false, },
-
-    { input: 'locationSearch', required: true, },
-    { input: 'inputImages', required: false, },
+    [
+        { input: 'propertyType', text: 'tip nekretnine', error: 'errorPropertyType', required: true, },
+        { input: 'street', text: 'ulica', error: 'errorStreet', minLength: 3, maxLength: 255, required: true, },
+        { input: 'propertyNumber', text: 'broj', error: 'errorPropertyNumber', minLength: 1, maxLength: 30, required: false, },
+        { input: 'roomsNumber', text: 'broj soba', error: 'errorRoomsNumber', required: true, },
+        { input: 'propertyArea', text: 'površina', error: 'errorPropertyArea', regex: /^[1-9]\d*$/, required: true, },
+        { input: 'heating', text: 'grejanje', error: 'errorHeating', required: true, },
+        { input: 'price', text: 'cena', error: 'errorPrice', regex: /^[1-9]\d*$/, required: true, },
+        { input: 'deposit', text: 'depozit', error: 'errorDeposit', regex: /^[1-9]\d*$/, required: false, },
+        { input: 'paymentSchedule', text: 'dinamika plaćanja', error: 'errorPaymentSchedule', required: true, },
+        { input: 'garageSpace', text: 'broj mesta u garaži', error: 'errorGarageSpace', regex: /^[1-9]\d*$/, required: false, },
+        { input: 'description', text: 'opis', error: 'errorDescription', minLength: 5, required: false, },
+    ],
+    [
+        { input: 'floor', required: true, },
+        { input: 'totalFloors', required: true, },
+    ],
+    [
+        { input: 'locationSearch', required: true, },
+        { input: 'inputImages', required: false, },
+    ],
 ];
 
 addEventListener();
@@ -313,10 +348,10 @@ submitListing();
 
 /* functions */
 function addEventListener() {
-    for (let i = 0; i < fields.length - 2; i++) {
-        const inputElement = document.getElementById(fields[i].input);
-        inputElement.addEventListener('input', () => validateField(fields[i]));
-    }
+    fields[0].forEach(field => {
+        const inputElement = document.getElementById(field.input);
+        inputElement.addEventListener('input', () => validateField(field));
+    });
 }
 
 function validateField(field) {
@@ -362,12 +397,14 @@ function submitListing() {
             }
         });
 
-        fields.forEach(field => {
-            const inputElement = document.getElementById(field.input);
-            if (field.required && inputElement.value === '') {
-                inputElement.classList.add('is-invalid');
-                btn.innerHTML = `<i class="fa-solid fa-check me-2"></i>Postavi oglas`;
-            }
+        fields.forEach(fieldGroup => {
+            fieldGroup.forEach(field => {
+                const inputElement = document.getElementById(field.input);
+                if (field.required && inputElement.value === '') {
+                    inputElement.classList.add('is-invalid');
+                    btn.innerHTML = `<i class="fa-solid fa-check me-2"></i>Postavi oglas`;
+                }
+            })
         });
     });
 }
