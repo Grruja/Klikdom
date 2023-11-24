@@ -287,35 +287,7 @@ function displayImages() {
     imagesContainer.innerHTML = images;
 }
 
-// ===== FLOOR & TOTAL FLOORS VALIDATION
-const floor = document.getElementById('floor');
-const totalFloors = document.getElementById('totalFloors');
 
-if (floor && totalFloors) {
-    const errorFloor = document.getElementById('errorFloor');
-    const errorTotalFloors = document.getElementById('errorTotalFloors');
-
-    floor.addEventListener('input', () => validateFloor(floor, errorFloor, totalFloors, errorTotalFloors));
-    totalFloors.addEventListener('input', () => validateFloor(floor, errorFloor, totalFloors, errorTotalFloors));
-}
-
-function validateFloor(floor, errorFloor, totalFloors, errorTotalFloors) {
-    const floorParsed = parseInt(floor.value);
-    const totalFloorsParsed = parseInt(totalFloors.value);
-
-    if (!isNaN(floorParsed) && floorParsed > totalFloorsParsed) {
-        errorFloor.textContent = `Sprat mora biti manji od ukupnog broja spratova.`;
-        floor.classList.add('is-invalid');
-        errorTotalFloors.textContent = `Ukupan broj spratova mora biti veći od sprata.`;
-        totalFloors.classList.add('is-invalid');
-    }
-    else {
-        errorFloor.textContent = '';
-        floor.classList.remove('is-invalid');
-        errorTotalFloors.textContent = '';
-        totalFloors.classList.remove('is-invalid');
-    }
-}
 
 
 // ===== VALIDATION

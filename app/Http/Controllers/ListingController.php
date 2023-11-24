@@ -61,6 +61,13 @@ class ListingController extends Controller
     }
 
     public function createListing(CreateListingRequest $request) {
+        $floor = $request->get('floor');
+        $totalFloors = $request->get('total_floors');
+
+        if (is_numeric($floor) && intval($floor) > intval($totalFloors)) {
+            return redirect()->back();
+        }
+
         $listing = $this->listingRepo->createListing($request);
         $this->listingInfoRepo->createListingInfo($request, $listing->id);
         $this->listingDetailsRepo->createListingDetails($request, $listing->id);
