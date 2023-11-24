@@ -9,6 +9,7 @@ use App\Repository\EquipmentRepo;
 use App\Repository\InfrastructureRepo;
 use App\Repository\InteriorRoomsRepo;
 use App\Repository\ListingDetailsRepo;
+use App\Repository\ListingImageRepo;
 use App\Repository\ListingInfoRepo;
 use App\Repository\ListingRepo;
 use Illuminate\Support\Facades\Session;
@@ -22,6 +23,7 @@ class ListingController extends Controller
     private $infrastructureRepo;
     private $interiorRoomsRepo;
     private $equipmentRepo;
+    private $listingImageRepo;
 
     public function __construct()
     {
@@ -32,6 +34,7 @@ class ListingController extends Controller
         $this->infrastructureRepo = new InfrastructureRepo();
         $this->interiorRoomsRepo = new InteriorRoomsRepo();
         $this->equipmentRepo = new EquipmentRepo();
+        $this->listingImageRepo = new ListingImageRepo();
     }
 
     public function displayForm(DisplayFormRequest $request) {
@@ -65,5 +68,6 @@ class ListingController extends Controller
         $this->infrastructureRepo->createInfrastructure($request, $listing->id);
         $this->interiorRoomsRepo->createInteriorRooms($request, $listing->id);
         $this->equipmentRepo->createEquipment($request, $listing->id);
+        $this->listingImageRepo->createListingImage($request, $listing->id);
     }
 }
