@@ -287,6 +287,7 @@ function displayImages() {
     imagesContainer.innerHTML = images;
 }
 
+
 // ===== FLOOR & TOTAL FLOORS VALIDATION
 const floor = document.getElementById('floor');
 const totalFloors = document.getElementById('totalFloors');
