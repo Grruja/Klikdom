@@ -18,8 +18,8 @@ return new class extends Migration
             $table->json('parking')->nullable();
             $table->json('garage')->nullable();
             $table->string('internet_type', 20)->nullable();
-            $table->boolean('smoking_allowed')->nullable();
-            $table->boolean('pets_allowed')->nullable();
+            $table->unsignedTinyInteger('smoking_allowed')->nullable();
+            $table->unsignedTinyInteger('pets_allowed')->nullable();
             $table->json('additional')->nullable();
 
             $table->foreign('listing_id')->references('id')->on('listings');

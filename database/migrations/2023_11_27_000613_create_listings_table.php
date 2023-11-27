@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('transaction', 15);
             $table->string('property', 20);
             $table->string('property_type', 30);
-            $table->string('location');
+            $table->unsignedBigInteger('location_id');
             $table->string('street');
             $table->integer('price');
             $table->integer('property_area');
