@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Helpers\LocationHelper;
 use App\Http\Requests\CreateListingRequest;
 use App\Http\Requests\DisplayFormRequest;
 use App\Repository\AmenityRepo;
@@ -13,7 +12,6 @@ use App\Repository\ListingDetailsRepo;
 use App\Repository\ListingImageRepo;
 use App\Repository\ListingInfoRepo;
 use App\Repository\ListingRepo;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Session;
 
 class ListingController extends Controller

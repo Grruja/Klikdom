@@ -12,7 +12,7 @@ class GetLocation extends Command
      *
      * @var string
      */
-    protected $signature = 'location:get {location*}';
+    protected $signature = 'location:get {location}';
 
     /**
      * The console command description.
@@ -28,13 +28,10 @@ class GetLocation extends Command
     {
         $location = $this->argument('location');
 
-        if ($location) {
-            $locationTitle = $location[count($location) - 1];
+        $url = 'https://api.4zida.rs/v6/autocomplete?q='.$location;
+        $response = Http::get($url);
 
-            $url = 'https://api.4zida.rs/v6/autocomplete?q='.mb_strtolower($locationTitle, 'UTF-8');
-            $response = Http::get($url);
-
-            dd($response->json());
-        }
+        $data = json_decode($response->body(), true);
+        $this->line(json_encode($data, JSON_PRETTY_PRINT));
     }
 }
