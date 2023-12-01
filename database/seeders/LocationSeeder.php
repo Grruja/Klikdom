@@ -6,7 +6,7 @@ use App\Models\City;
 use App\Models\District;
 use App\Models\Place;
 use App\Models\Settlement;
-use App\Models\Street;
+use App\Models\Area;
 use App\Models\Location;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
@@ -28,7 +28,7 @@ class LocationSeeder extends Seeder
                 $location = array_reverse($result['allParentTitles']);
                 $location[] = $result['title'];
 
-                $models = [City::class, District::class, Settlement::class, Street::class, Place::class];
+                $models = [City::class, District::class, Settlement::class, Area::class, Place::class];
                 $ids = [];
 
                 foreach ($location as $key => $value) {
@@ -45,7 +45,7 @@ class LocationSeeder extends Seeder
                     'city_id' => $ids[0],
                     'district_id' => $ids[1] ?? null,
                     'settlement_id' => $ids[2] ?? null,
-                    'street_id' => $ids[3] ?? null,
+                    'area_id' => $ids[3] ?? null,
                     'place_id' => $ids[4] ?? null,
                 ]);
             }

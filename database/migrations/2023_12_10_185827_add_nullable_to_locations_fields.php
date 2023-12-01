@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('locations', function (Blueprint $table) {
             $table->unsignedBigInteger('district_id')->nullable()->change();
             $table->unsignedBigInteger('settlement_id')->nullable()->change();
-            $table->unsignedBigInteger('street_id')->nullable()->change();
+            $table->unsignedBigInteger('area_id')->nullable()->change();
             $table->unsignedBigInteger('place_id')->nullable()->change();
         });
     }

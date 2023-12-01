@@ -13,7 +13,7 @@ class Location extends Model
         'city_id',
         'district_id',
         'settlement_id',
-        'street_id',
+        'area_id',
         'place_id',
     ];
 }

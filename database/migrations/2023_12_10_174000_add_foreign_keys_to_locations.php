@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreign('city_id')->references('id')->on('cities');
             $table->foreign('district_id')->references('id')->on('districts');
             $table->foreign('settlement_id')->references('id')->on('settlements');
-            $table->foreign('street_id')->references('id')->on('streets');
+            $table->foreign('area_id')->references('id')->on('areas');
             $table->foreign('place_id')->references('id')->on('places');
         });
     }

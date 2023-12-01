@@ -16,9 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('city_id');
             $table->unsignedBigInteger('district_id');
             $table->unsignedBigInteger('settlement_id');
-            $table->unsignedBigInteger('street_id');
+            $table->unsignedBigInteger('area_id');
             $table->unsignedBigInteger('place_id');
-            $table->timestamps();
         });
     }
 
