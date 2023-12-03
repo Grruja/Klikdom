@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,5 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/kreiraj-oglas', 'createListing')->name('create');
     });
 });
+
+Route::get('/locations/{input}', [LocationController::class, 'find']);
 
 require __DIR__.'/auth.php';

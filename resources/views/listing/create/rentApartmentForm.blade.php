@@ -33,7 +33,7 @@
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-location-dot" style="color: var(--color-primary)"></i></span>
                             <div class="form-floating">
-                                <input type="text" name="location" required id="locationSearch" class="form-control" placeholder="Naziv kraja *">
+                                <input type="text" name="location" required id="locationSearch" class="form-control" placeholder="Naziv kraja *" autocomplete="off">
                                 <label for="locationSearch" class="text-secondary ms-2">Naziv kraja *</label>
                             </div>
                         </div>

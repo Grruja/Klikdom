@@ -81,7 +81,7 @@ function displayLocationsDropdown() {
 
 async function getLocations(location) {
     try {
-        const response = await fetch(`https://api.4zida.rs/v6/autocomplete?q=${location.toLowerCase()}`);
+        const response = await fetch(`/locations/${location.toLowerCase()}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -95,24 +95,15 @@ async function getLocations(location) {
 
 function displayLocations(locations) {
     locations.forEach((location) => {
-        if (location.allParentTitles.length < 1) return;
+        let li = document.createElement('li');
+        li.className = 'pointer border-top pt-2';
+        locationIcon(li);
+        pickLocation(li);
 
-        const locationLength = location.allParentTitles.length;
-        if (locationLength > 1) {
-            let li = document.createElement('li');
-            li.className = 'pointer border-top pt-2';
-            locationIcon(li);
-            pickLocation(li);
+        li.textContent = `${location.city.name} ${location.district?.name ?? ''} ${location.settlement?.name ?? ''} ${location.area?.name ?? ''} ${location.place?.name ?? ''}`;
 
-            for (let j = locationLength - 1; j >= -1; j--) {
-                let span = document.createElement('span');
-
-                span.textContent =  (j < 0) ? `${location.title}` : `${location.allParentTitles[j]} - `;
-                li.appendChild(span);
-            }
-            searchDropdown.appendChild(li);
-        }
-    });
+        searchDropdown.appendChild(li);
+    })
 }
 
 function blurLocationsDropdown() {

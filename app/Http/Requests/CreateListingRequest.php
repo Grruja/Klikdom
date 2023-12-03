@@ -43,7 +43,7 @@ class CreateListingRequest extends FormRequest
         else {
             return [
                 'property_type' => 'required|in:building apartment,house apartment,apartment,studio,penthouse,courtyard apartment,duplex',
-                'location' => 'required|string|max:255',
+                'location' => 'required|integer|min:1',
                 'street' => 'required|string|min:3|max:255',
                 'price' => 'required|integer|min:1',
                 'property_area' => 'required|integer|min:1',
