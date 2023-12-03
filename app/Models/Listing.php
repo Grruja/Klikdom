@@ -14,7 +14,7 @@ class Listing extends Model
         'transaction',
         'property',
         'property_type',
-        'location',
+        'location_id',
         'street',
         'price',
         'property_area',

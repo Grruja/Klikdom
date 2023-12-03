@@ -29,6 +29,7 @@ function loadingSpinner(status, spinnerId, parentId) {
 // ===== LOCATION
 let firstErrorElement = null;   //used in location and validation for other fields
 
+const locationId = document.getElementById('locationId');
 const locationSearch = document.getElementById('locationSearch');
 const searchDropdown = document.getElementById('searchDropdown');
 const errorLocation = document.getElementById('errorLocation');
@@ -95,12 +96,15 @@ async function getLocations(location) {
 
 function displayLocations(locations) {
     locations.forEach((location) => {
-        let li = document.createElement('li');
+        const li = document.createElement('li');
         li.className = 'pointer border-top pt-2';
+        li.value = location.id;
         locationIcon(li);
         pickLocation(li);
 
-        li.textContent = `${location.city.name} ${location.district?.name ?? ''} ${location.settlement?.name ?? ''} ${location.area?.name ?? ''} ${location.place?.name ?? ''}`;
+        const span = document.createElement('span');
+        span.textContent = location.search_title;
+        li.appendChild(span);
 
         searchDropdown.appendChild(li);
     })
@@ -123,6 +127,7 @@ function deleteLocations() {
 
 function pickLocation(element) {
     element.addEventListener('click', () => {
+        locationId.value = element.value
         locationSearch.value = element.textContent;
         validateLocation(false);
     });

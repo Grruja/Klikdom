@@ -17,6 +17,14 @@ class Location extends Model
         'place_id',
     ];
 
+    const TYPES = [
+        'city',
+        'district',
+        'settlement',
+        'area',
+        'place',
+    ];
+
     public function city()
     {
         return $this->belongsTo(City::class,'city_id');

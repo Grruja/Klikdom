@@ -22,7 +22,7 @@ class ListingRepo
             'transaction' => Session::get('listing_type.transaction'),
             'property' => Session::get('listing_type.property'),
             'property_type' => $request->get('property_type'),
-            'location' => $request->get('location'),
+            'location_id' => $request->get('location_id'),
             'street' => $request->get('street'),
             'price' => $request->get('price'),
             'property_area' => $request->get('property_area'),
