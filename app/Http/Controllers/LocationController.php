@@ -3,30 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Helpers\LocationHelper;
-use App\Models\Location;
+use App\Repository\LocationRepo;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
-    public function find($input)
+    private $locationRepo;
+
+    public function __construct()
     {
-        $locations = Location::with(['city', 'district', 'settlement', 'area', 'place'])
-        ->whereHas('city', function ($query) use ($input) {
-            $query->where('name', 'like', "%$input%");
+        $this->locationRepo = new LocationRepo();
+    }
 
-        })->orWhereHas('district', function ($query) use ($input) {
-            $query->where('name', 'like', "%$input%");
-
-        })->orWhereHas('settlement', function ($query) use ($input) {
-            $query->where('name', 'like', "%$input%");
-
-        })->orWhereHas('area', function ($query) use ($input) {
-            $query->where('name', 'like', "%$input%");
-
-        })->orWhereHas('place', function ($query) use ($input) {
-            $query->where('name', 'like', "%$input%");
-
-        })->get();
+    public function getLocations($input)
+    {
+        $locations = $this->locationRepo->getLocations($input);
 
         $refactor = $locations->map(function ($location) {
             return [

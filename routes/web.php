@@ -32,6 +32,6 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::get('/locations/{input}', [LocationController::class, 'find']);
+Route::get('/locations/{input}', [LocationController::class, 'getLocations']);
 
 require __DIR__.'/auth.php';
