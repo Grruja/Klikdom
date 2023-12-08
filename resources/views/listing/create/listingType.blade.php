@@ -1,4 +1,4 @@
-@extends('layouts.createListing')
+@extends('layouts.main')
 
 @section('pageContent')
     <div class="container d-flex justify-content-center">

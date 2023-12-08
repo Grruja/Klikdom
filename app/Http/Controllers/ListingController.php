@@ -56,7 +56,7 @@ class ListingController extends Controller
             return view('listing.create.rentHouseForm');
         }
         else {
-            return view('listing.create.rentApartmentForm');
+            return view('listing.create.rent_apartment.form');
         }
     }
 
