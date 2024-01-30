@@ -12,7 +12,7 @@ return [
     'registered' => 'nullable|in:yes,no,in process,partially',
     'deposit' => 'nullable|integer|min:1',
     'rooms_number' => 'required|in:0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8',
-    'floor' => 'required|in:basement,cellar,low ground floor,ground floor,high ground floor,attic'.implode(',', range(1, 29)),
+    'floor' => ['required', 'in:basement,cellar,low ground floor,ground floor,high ground floor,attic'.implode(',', range(1, 29)), new \App\Rules\FloorCheck()],
     'total_floors' => 'required|in:'.implode(',', range(1, 29)),
 
     'year_built' => 'nullable|in:0,'.implode(',', range(1900, date("Y"), 10)),
