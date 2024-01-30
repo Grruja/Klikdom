@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\ListingTypeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -18,18 +19,20 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome')->name('welcome');
 
 Route::middleware('auth')->group(function () {
-    //===== Profile settings
+    // Profile settings
     Route::get('/podesavanja', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/podesavanja', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/podesavanja', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    //===== Create listing
+    // Select listing type
     Route::view('/postavi-oglas', 'listing.create.listingType')->name('listing.type');
+    Route::get('/postavi-oglas/detalji-nekretnine', [ListingTypeController::class, 'displayForm'])->name('listing.form');
 
+    // Listing
     Route::controller(ListingController::class)->name('listing.')->group(function () {
-        Route::get('/postavi-oglas/detalji-nekretnine', 'displayForm')->name('form');
         Route::post('/kreiraj-oglas', 'createListing')->name('create');
     });
+
 });
 
 Route::get('/locations/{input}', [LocationController::class, 'getLocations']);
