@@ -6,7 +6,7 @@ use App\Models\Location;
 
 class LocationHelper
 {
-    public static function getLastLocation($location)
+    public static function getLastLocation(Location $location): ?string
     {
         $types = Location::TYPES;
 
@@ -16,14 +16,13 @@ class LocationHelper
             if ($location[$type] === null) {
                 break;
             }
-
             $lastType = $type;
         }
 
         return $lastType;
     }
 
-    public static function titleFormatter($location)
+    public static function titleFormatter(Location $location): string
     {
         $types = Location::TYPES;
         $title = [];
@@ -32,7 +31,6 @@ class LocationHelper
             if ($location[$type] === null) {
                 break;
             }
-
             array_push($title, $location[$type]['name']);
         }
 

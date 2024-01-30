@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Helpers\LocationHelper;
 use App\Repository\LocationRepo;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
-    private $locationRepo;
+    private LocationRepo $locationRepo;
 
     public function __construct()
     {
         $this->locationRepo = new LocationRepo();
     }
 
-    public function getLocations($input)
+    public function getLocations(string $input): JsonResponse
     {
         $locations = $this->locationRepo->getLocations($input);
 

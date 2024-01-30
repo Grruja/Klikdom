@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::view('/postavi-oglas', 'listing.create.listingType')->name('listing.type');
     Route::get('/postavi-oglas/detalji-nekretnine', [ListingTypeController::class, 'displayForm'])->name('listing.form');
 
-    // Listing
+    // Create and update listing
     Route::controller(CreateUpdateListingController::class)->name('listing.')->group(function () {
         Route::post('/kreiraj-oglas', 'createListing')->name('create');
     });

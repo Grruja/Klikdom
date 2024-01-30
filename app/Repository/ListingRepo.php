@@ -3,19 +3,20 @@
 namespace App\Repository;
 
 use App\Models\Listing;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class ListingRepo
 {
-    private $listingModel;
+    private Listing $listingModel;
 
     public function __construct()
     {
         $this->listingModel = new Listing();
     }
 
-    public function createListing($request)
+    public function createListing(Request $request): Listing
     {
         return $this->listingModel->create([
             'user_id' => Auth::id(),

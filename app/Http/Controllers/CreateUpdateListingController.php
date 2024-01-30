@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateListingRequest;
-use App\Http\Requests\DisplayFormRequest;
 use App\Repository\AmenityRepo;
 use App\Repository\EquipmentRepo;
 use App\Repository\InfrastructureRepo;
@@ -12,18 +11,17 @@ use App\Repository\ListingDetailsRepo;
 use App\Repository\ListingImageRepo;
 use App\Repository\ListingInfoRepo;
 use App\Repository\ListingRepo;
-use Illuminate\Support\Facades\Session;
 
 class CreateUpdateListingController extends Controller
 {
-    private $listingRepo;
-    private $listingInfoRepo;
-    private $listingDetailsRepo;
-    private $amenityRepo;
-    private $infrastructureRepo;
-    private $interiorRoomsRepo;
-    private $equipmentRepo;
-    private $listingImageRepo;
+    private ListingRepo $listingRepo;
+    private ListingInfoRepo $listingInfoRepo;
+    private ListingDetailsRepo $listingDetailsRepo;
+    private AmenityRepo $amenityRepo;
+    private InfrastructureRepo $infrastructureRepo;
+    private InteriorRoomsRepo $interiorRoomsRepo;
+    private EquipmentRepo $equipmentRepo;
+    private ListingImageRepo $listingImageRepo;
 
     public function __construct()
     {
@@ -37,7 +35,8 @@ class CreateUpdateListingController extends Controller
         $this->listingImageRepo = new ListingImageRepo();
     }
 
-    public function createListing(CreateListingRequest $request) {
+    public function createListing(CreateListingRequest $request): void
+    {
         $listing = $this->listingRepo->createListing($request);
         $this->listingInfoRepo->createListingInfo($request, $listing->id);
         $this->listingDetailsRepo->createListingDetails($request, $listing->id);

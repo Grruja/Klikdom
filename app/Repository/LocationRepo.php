@@ -3,17 +3,18 @@
 namespace App\Repository;
 
 use App\Models\Location;
+use Illuminate\Database\Eloquent\Collection;
 
 class LocationRepo
 {
-    private $locationModel;
+    private Location $locationModel;
 
     public function __construct()
     {
         $this->locationModel = new Location();
     }
 
-    public function getLocations($input)
+    public function getLocations(string $input): Collection
     {
         return $this->locationModel->with(['city', 'district', 'settlement', 'area', 'place'])
             ->whereHas('city', function ($query) use ($input) {

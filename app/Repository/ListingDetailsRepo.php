@@ -3,18 +3,19 @@
 namespace App\Repository;
 
 use App\Models\ListingDetails;
+use Illuminate\Http\Request;
 use function League\Flysystem\has;
 
 class ListingDetailsRepo
 {
-    private $listingDetailsModel;
+    private ListingDetails $listingDetailsModel;
 
     public function __construct()
     {
         $this->listingDetailsModel = new ListingDetails();
     }
 
-    public function createListingDetails($request, $listingId)
+    public function createListingDetails(Request $request, int $listingId): void
     {
         $listingDetailsColumns = $this->listingDetailsModel->getFillable();
         $hasValue = false;

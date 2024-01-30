@@ -3,17 +3,18 @@
 namespace App\Repository;
 
 use App\Models\Amenity;
+use Illuminate\Http\Request;
 
 class AmenityRepo
 {
-    private $amenityModel;
+    private Amenity $amenityModel;
 
     public function __construct()
     {
         $this->amenityModel = new Amenity();
     }
 
-    public function createAmenity($request, $listingId)
+    public function createAmenity(Request $request, int $listingId): void
     {
         $amenityColumns = $this->amenityModel->getFillable();
         array_pop($amenityColumns);

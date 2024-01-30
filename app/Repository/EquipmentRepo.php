@@ -3,17 +3,18 @@
 namespace App\Repository;
 
 use App\Models\Equipment;
+use Illuminate\Http\Request;
 
 class EquipmentRepo
 {
-    private $equipmentModel;
+    private Equipment $equipmentModel;
 
     public function __construct()
     {
         $this->equipmentModel = new Equipment();
     }
 
-    public function createEquipment($request, $listingId)
+    public function createEquipment(Request $request, int $listingId): void
     {
         $equipment_name = $request->get('equipment_name');
         if (!is_null($equipment_name)) {

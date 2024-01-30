@@ -3,17 +3,18 @@
 namespace App\Repository;
 
 use App\Models\Infrastructure;
+use Illuminate\Http\Request;
 
 class InfrastructureRepo
 {
-    private $infrastructureModel;
+    private Infrastructure $infrastructureModel;
 
     public function __construct()
     {
         $this->infrastructureModel = new Infrastructure();
     }
 
-    public function createInfrastructure($request, $listingId)
+    public function createInfrastructure(Request $request, int $listingId): void
     {
         $infrastructure_name = $request->get('infrastructure_name');
         if (!is_null($infrastructure_name)) {

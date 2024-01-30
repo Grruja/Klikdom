@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Session;
 
 class ListingTypeController extends Controller
 {
-    public function displayForm(DisplayFormRequest $request) {
+    public function displayForm(DisplayFormRequest $request)
+    {
         $transaction = $request->get('transaction');
         $property = $request->get('property');
 

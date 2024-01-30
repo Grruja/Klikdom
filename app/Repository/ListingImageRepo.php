@@ -3,19 +3,20 @@
 namespace App\Repository;
 
 use App\Models\ListingImage;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class ListingImageRepo
 {
-    private $listingImageModel;
+    private ListingImage $listingImageModel;
 
     public function __construct()
     {
         $this->listingImageModel = new ListingImage();
     }
 
-    public function createListingImage($request, $listingId)
+    public function createListingImage(Request $request, int $listingId): void
     {
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {

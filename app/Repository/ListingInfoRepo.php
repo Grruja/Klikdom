@@ -3,17 +3,18 @@
 namespace App\Repository;
 
 use App\Models\ListingInfo;
+use Illuminate\Http\Request;
 
 class ListingInfoRepo
 {
-    private $listingInfoModel;
+    private ListingInfo $listingInfoModel;
 
     public function __construct()
     {
         $this->listingInfoModel = new ListingInfo();
     }
 
-    public function createListingInfo($request, $listingId)
+    public function createListingInfo(Request $request, int $listingId): void
     {
         $this->listingInfoModel->create([
             'listing_id' => $listingId,
