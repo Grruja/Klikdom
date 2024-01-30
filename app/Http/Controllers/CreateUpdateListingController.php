@@ -14,7 +14,7 @@ use App\Repository\ListingInfoRepo;
 use App\Repository\ListingRepo;
 use Illuminate\Support\Facades\Session;
 
-class ListingController extends Controller
+class CreateUpdateListingController extends Controller
 {
     private $listingRepo;
     private $listingInfoRepo;

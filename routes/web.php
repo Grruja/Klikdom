@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ListingController;
+use App\Http\Controllers\CreateUpdateListingController;
 use App\Http\Controllers\ListingTypeController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/postavi-oglas/detalji-nekretnine', [ListingTypeController::class, 'displayForm'])->name('listing.form');
 
     // Listing
-    Route::controller(ListingController::class)->name('listing.')->group(function () {
+    Route::controller(CreateUpdateListingController::class)->name('listing.')->group(function () {
         Route::post('/kreiraj-oglas', 'createListing')->name('create');
     });
 
