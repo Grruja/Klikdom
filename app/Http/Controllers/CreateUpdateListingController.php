@@ -11,6 +11,7 @@ use App\Repository\ListingDetailsRepo;
 use App\Repository\ListingImageRepo;
 use App\Repository\ListingInfoRepo;
 use App\Repository\ListingRepo;
+use App\Service\ImageService;
 
 class CreateUpdateListingController extends Controller
 {
@@ -22,6 +23,7 @@ class CreateUpdateListingController extends Controller
     private InteriorRoomsRepo $interiorRoomsRepo;
     private EquipmentRepo $equipmentRepo;
     private ListingImageRepo $listingImageRepo;
+    private ImageService $imageService;
 
     public function __construct()
     {
@@ -33,6 +35,7 @@ class CreateUpdateListingController extends Controller
         $this->interiorRoomsRepo = new InteriorRoomsRepo();
         $this->equipmentRepo = new EquipmentRepo();
         $this->listingImageRepo = new ListingImageRepo();
+        $this->imageService = new ImageService();
     }
 
     public function createListing(CreateListingRequest $request): void
@@ -44,6 +47,12 @@ class CreateUpdateListingController extends Controller
         $this->infrastructureRepo->createInfrastructure($request, $listing->id);
         $this->interiorRoomsRepo->createInteriorRooms($request, $listing->id);
         $this->equipmentRepo->createEquipment($request, $listing->id);
-        $this->listingImageRepo->createListingImage($request, $listing->id);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $this->imageService->compressAndStore($image);
+            }
+            $this->listingImageRepo->createListingImage($request, $listing->id);
+        }
     }
 }
