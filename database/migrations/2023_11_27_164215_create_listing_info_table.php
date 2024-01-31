@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('listing_id');
             $table->integer('payment_schedule');
-            $table->string('registered', 20)->nullable();
+            $table->enum('registered', config('enumOptions.listing_info.registered'))->nullable();
             $table->integer('deposit')->nullable();
-            $table->float('rooms_number', 2, 1);
-            $table->string('floor', 30);
+            $table->enum('rooms_number', config('enumOptions.listing_info.rooms_number'))->index();
+            $table->enum('floor', config('enumOptions.listing_info.floor'))->index();
             $table->integer('total_floors');
             $table->integer('storeys_number')->nullable();
             $table->integer('land_area')->nullable();

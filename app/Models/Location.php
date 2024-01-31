@@ -17,6 +17,8 @@ class Location extends Model
         'place_id',
     ];
 
+    public $timestamps = false;
+
     const TYPES = [
         'city',
         'district',

@@ -16,12 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('transaction', 15);
             $table->string('property', 20);
-            $table->string('property_type', 30);
+            $table->enum('property_type', config('enumOptions.listings.property_type'))->index();
             $table->unsignedBigInteger('location_id');
             $table->string('street');
             $table->integer('price');
             $table->integer('property_area');
-            $table->string('heating', 40);
+            $table->enum('heating', config('enumOptions.listings.heating'))->index();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

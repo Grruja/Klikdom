@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('amenities', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('listing_id');
-            $table->unsignedTinyInteger('elevator')->nullable();
+            $table->enum('elevator', config('enumOptions.amenities.elevator'))->nullable();
             $table->json('parking')->nullable();
             $table->json('garage')->nullable();
-            $table->string('internet_type', 20)->nullable();
+            $table->enum('internet_type', config('enumOptions.amenities.internet_type'))->nullable();
             $table->unsignedTinyInteger('smoking_allowed')->nullable();
             $table->unsignedTinyInteger('pets_allowed')->nullable();
             $table->json('additional')->nullable();

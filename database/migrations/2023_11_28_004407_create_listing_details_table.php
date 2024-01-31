@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('listing_id');
             $table->string('construction_material', 30)->nullable();
-            $table->unsignedInteger('year_built')->nullable();
+            $table->enum('year_built', config('enumOptions.listing_details.year_built'))->nullable();
             $table->string('property_number', 30)->nullable();
-            $table->string('condition', 30)->nullable();
+            $table->enum('condition', config('enumOptions.listing_details.condition'))->nullable();
             $table->string('water_supply', 20)->nullable();
-            $table->string('furnishings', 20)->nullable();
+            $table->enum('furnishings', config('enumOptions.listing_details.furnishings'))->nullable();
             $table->date('available_from')->nullable();
             $table->integer('available_now')->nullable();
             $table->text('description')->nullable();
