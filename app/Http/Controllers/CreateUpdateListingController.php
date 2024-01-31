@@ -40,19 +40,19 @@ class CreateUpdateListingController extends Controller
 
     public function createListing(CreateListingRequest $request): void
     {
-        $listing = $this->listingRepo->createListing($request);
-        $this->listingInfoRepo->createListingInfo($request, $listing->id);
-        $this->listingDetailsRepo->createListingDetails($request, $listing->id);
-        $this->amenityRepo->createAmenity($request, $listing->id);
-        $this->infrastructureRepo->createInfrastructure($request, $listing->id);
-        $this->interiorRoomsRepo->createInteriorRooms($request, $listing->id);
-        $this->equipmentRepo->createEquipment($request, $listing->id);
+        $listingId = $this->listingRepo->createListingReturnId($request);
+        $this->listingInfoRepo->createListingInfo($request, $listingId);
+        $this->listingDetailsRepo->createListingDetails($request, $listingId);
+        $this->amenityRepo->createAmenity($request, $listingId);
+        $this->infrastructureRepo->createInfrastructure($request, $listingId);
+        $this->interiorRoomsRepo->createInteriorRooms($request, $listingId);
+        $this->equipmentRepo->createEquipment($request, $listingId);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $this->imageService->compressAndStore($image);
             }
-            $this->listingImageRepo->createListingImage($request, $listing->id);
+            $this->listingImageRepo->createListingImage($request, $listingId);
         }
     }
 }

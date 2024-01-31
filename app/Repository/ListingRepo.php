@@ -16,9 +16,9 @@ class ListingRepo
         $this->listingModel = new Listing();
     }
 
-    public function createListing(Request $request): Listing
+    public function createListingReturnId(Request $request): int
     {
-        return $this->listingModel->create([
+        $listing = $this->listingModel->create([
             'user_id' => Auth::id(),
             'transaction' => Session::get('listing_type.transaction'),
             'property' => Session::get('listing_type.property'),
@@ -29,5 +29,7 @@ class ListingRepo
             'property_area' => $request->get('property_area'),
             'heating' => $request->get('heating'),
         ]);
+
+        return $listing->id;
     }
 }
