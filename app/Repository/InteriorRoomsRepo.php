@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Models\InteriorRooms;
-use Illuminate\Http\Request;
 
 class InteriorRoomsRepo
 {
@@ -14,14 +13,13 @@ class InteriorRoomsRepo
         $this->interiorRoomsModel = new InteriorRooms();
     }
 
-    public function createInteriorRooms(Request $request, int $listingId): void
+    public function createInteriorRooms(?array $rooms, int $listingId): void
     {
-        $room_name = $request->get('room_name');
-        if (!is_null($room_name)) {
-            foreach ($room_name as $item) {
+        if (!is_null($rooms)) {
+            foreach ($rooms as $room) {
                 $this->interiorRoomsModel->create([
                     'listing_id' => $listingId,
-                    'room_name' => $item,
+                    'room_name' => $room,
                 ]);
             }
         }

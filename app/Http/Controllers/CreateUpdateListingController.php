@@ -44,9 +44,9 @@ class CreateUpdateListingController extends Controller
         $this->listingInfoRepo->createListingInfo($request, $listingId);
         $this->listingDetailsRepo->createListingDetails($request, $listingId);
         $this->amenityRepo->createAmenity($request, $listingId);
-        $this->infrastructureRepo->createInfrastructure($request, $listingId);
-        $this->interiorRoomsRepo->createInteriorRooms($request, $listingId);
-        $this->equipmentRepo->createEquipment($request, $listingId);
+        $this->infrastructureRepo->createInfrastructure($request->get('infrastructure_name'), $listingId);
+        $this->interiorRoomsRepo->createInteriorRooms($request->get('room_name'), $listingId);
+        $this->equipmentRepo->createEquipment($request->get('equipment'), $listingId);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {

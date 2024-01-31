@@ -14,14 +14,13 @@ class InfrastructureRepo
         $this->infrastructureModel = new Infrastructure();
     }
 
-    public function createInfrastructure(Request $request, int $listingId): void
+    public function createInfrastructure(?array $infrastructures, int $listingId): void
     {
-        $infrastructure_name = $request->get('infrastructure_name');
-        if (!is_null($infrastructure_name)) {
-            foreach ($infrastructure_name as $item) {
+        if (!is_null($infrastructures)) {
+            foreach ($infrastructures as $infrastructure) {
                 $this->infrastructureModel->create([
                     'listing_id' => $listingId,
-                    'infrastructure_name' => $item,
+                    'infrastructure_name' => $infrastructure,
                 ]);
             }
         }
